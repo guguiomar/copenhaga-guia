@@ -84,12 +84,12 @@ h1 span{color:var(--red)}
 @media(max-width:800px){.hint{display:none}}
 
 /* Stats */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
 .stat{background:var(--paper2);border:1.5px solid var(--ink);border-radius:14px;padding:14px 16px}
 .stat b{font-size:28px;line-height:1;display:block;letter-spacing:-.03em}
 .stat span{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .stat:nth-child(1){background:#FFE9E6}.stat:nth-child(2){background:#FFF3C4}.stat:nth-child(3){background:#DFF0E3}.stat:nth-child(4){background:#E6EBFF}
-@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.stats{grid-template-columns:1fr 1fr 1fr}}
 
 /* Map */
 .map-card{background:var(--paper);border:1.5px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:6px 6px 0 rgba(18,18,18,.08)}
@@ -110,22 +110,16 @@ body[data-filter="segunda"] .route:not([data-day="segunda"]){opacity:.12}
 .map-legend i{width:22px;height:4px;display:inline-block;vertical-align:middle;margin-right:6px;border-radius:999px}
 
 /* Detail grid */
-.detail-grid{display:grid;grid-template-columns:1.9fr .9fr;gap:12px;margin-top:12px}
+.detail-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
 @media(max-width:860px){.detail-grid{grid-template-columns:1fr}}
-.inset-card,.airport-card{border:1.5px solid var(--ink);border-radius:18px;overflow:hidden;background:var(--paper2)}
-.inset-card header,.airport-card header{padding:12px 16px;border-bottom:1.5px solid var(--ink);display:flex;justify-content:space-between;align-items:center}
+.inset-card{border:1.5px solid var(--ink);border-radius:18px;overflow:hidden;background:var(--paper2)}
+.inset-card header{padding:12px 16px;border-bottom:1.5px solid var(--ink);display:flex;justify-content:space-between;align-items:center}
 .inset-card header b{font-size:13px;letter-spacing:.1em;text-transform:uppercase}
 .inset-tags{display:flex;flex-wrap:wrap;gap:6px;padding:14px 16px}
-.tag{font-size:12px;font-weight:700;border:1.2px solid var(--ink);border-radius:999px;padding:6px 10px;background:white}
+.tag{font-size:12px;font-weight:700;border:1.2px solid var(--ink);border-radius:999px;padding:6px 10px;background:white;cursor:pointer;font-family:inherit}
 .tag.r{border-color:var(--red);color:var(--red-dark)} .tag.b{border-color:var(--blue);color:var(--blue-dark)} .tag.p{border-color:var(--pink-dark);color:var(--pink-dark)} .tag.y{border-color:var(--yellow-dark);color:var(--yellow-dark)}
+.tag:hover,.tag:focus-visible{background:var(--ink);color:white;border-color:var(--ink);outline:none}
 .inset-note{padding:0 16px 16px;font-size:13.5px;line-height:1.5;color:#333}
-.airport-card{background:#FDE8EE;display:flex;flex-direction:column}
-.airport-hero{padding:22px 18px 10px;text-align:center}
-.plane{font-size:64px;line-height:1;color:var(--pink-dark)}
-.cph{font-size:52px;font-weight:900;letter-spacing:-.04em;color:var(--pink-dark);line-height:1;margin-top:6px}
-.airport-card ul{list-style:none;margin:8px 0 0;padding:16px 18px 20px;text-align:center}
-.airport-card li{font-weight:700;padding:7px 0;border-top:1px dashed rgba(0,0,0,.18);font-size:14px}
-.airport-card li:first-child{border-top:0;font-size:16px}
 
 /* Days */
 .days-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:28px 0 14px;flex-wrap:wrap}
@@ -145,11 +139,8 @@ body[data-filter="segunda"] .route:not([data-day="segunda"]){opacity:.12}
 .day-body{padding:12px 14px 16px}
 .hood{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:14px 0 7px}
 .hood:first-child{margin-top:0}
-.place{display:flex;gap:8px;align-items:flex-start;padding:5px 0;line-height:1.35}
 .num{flex:0 0 21px;width:21px;height:21px;border-radius:50%;border:1.8px solid;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin-top:1px;background:white}
 .day[data-day="quinta"] .num{border-color:var(--red);color:var(--red-dark)} .day[data-day="sexta"] .num{border-color:var(--yellow);color:var(--yellow-dark)} .day[data-day="sabado"] .num{border-color:var(--green);color:var(--green-dark)} .day[data-day="domingo"] .num{border-color:var(--blue);color:var(--blue-dark)} .day[data-day="segunda"] .num{border-color:var(--pink);color:var(--pink-dark)}
-.place span{font-size:13.5px;font-weight:600}
-.place small{display:block;font-weight:500;color:var(--muted);font-size:12px}
 .base-badge{display:inline-flex;background:var(--red);color:white;font-size:10px;font-weight:800;letter-spacing:.06em;padding:3px 7px;border-radius:999px;margin-left:6px;vertical-align:1px;text-transform:uppercase}
 
 /* HAY footer band */
@@ -161,6 +152,46 @@ body[data-filter="segunda"] .route:not([data-day="segunda"]){opacity:.12}
 .hay-band .right{display:grid;grid-template-columns:1fr 1fr}
 .hay-band .right div{padding:18px;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:end;min-height:76px}
 .hay-band .right div:nth-child(1){background:var(--red);color:white} .hay-band .right div:nth-child(2){background:var(--yellow)} .hay-band .right div:nth-child(3){background:var(--green);color:white} .hay-band .right div:nth-child(4){background:var(--blue);color:white} .hay-band .right div:nth-child(5){background:var(--pink);grid-column:1 / -1}
+
+.place{display:flex;gap:8px;align-items:flex-start;padding:8px 6px;margin:0 -6px;line-height:1.35;width:calc(100% + 12px);background:transparent;border:0;border-radius:10px;text-align:left;font-family:inherit;color:inherit;cursor:pointer}
+.place:hover,.place:focus-visible{background:#F3EFE3;outline:none}
+.place span{font-size:13.5px;font-weight:600}
+.place small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+
+.map-pin{cursor:pointer}
+.map-pin .hit{fill:transparent;stroke:none}
+.map-pin:hover circle:not(.hit),
+.map-pin:focus-visible circle:not(.hit){stroke-width:3}
+.map-pin:focus{outline:none}
+
+/* Place sheet */
+.sheet-root{position:fixed;inset:0;z-index:80;display:none;align-items:flex-end;justify-content:center}
+.sheet-root.is-open{display:flex}
+.sheet-backdrop{position:absolute;inset:0;background:rgba(18,18,18,.45)}
+.sheet{position:relative;z-index:1;background:var(--paper);border:1.5px solid var(--ink);border-radius:18px 18px 0 0;box-shadow:0 -8px 0 rgba(18,18,18,.08);width:min(560px,100%);max-height:92vh;overflow:auto;padding:0 0 20px;font-family:"Archivo",Helvetica,Arial,sans-serif;-webkit-overflow-scrolling:touch}
+@media(min-width:700px){
+  .sheet-root{align-items:center}
+  .sheet{border-radius:18px;box-shadow:8px 8px 0 rgba(18,18,18,.14);max-height:86vh}
+}
+.sheet-close{position:absolute;top:10px;right:10px;z-index:2;width:44px;height:44px;border:1.5px solid var(--ink);border-radius:50%;background:var(--paper2);font-size:22px;font-weight:800;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:inherit}
+.sheet-close:hover,.sheet-close:focus-visible{background:var(--ink);color:white;outline:none}
+.sheet-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;border-bottom:1.5px solid var(--ink);background:#EDE6D2}
+.sheet-carousel:empty{display:none}
+.sheet-slide{flex:0 0 100%;scroll-snap-align:start;aspect-ratio:4/3;background:#EDE6D2}
+.sheet-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.sheet-dots{display:flex;justify-content:center;gap:6px;padding:10px 16px 0}
+.sheet-dots:empty{display:none}
+.sheet-dots button{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;padding:0;min-height:0;cursor:pointer}
+.sheet-dots button.is-on{background:var(--ink)}
+.sheet-body{padding:14px 20px 0}
+.sheet-kicker{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.sheet-body h2{margin:0;font-size:28px;letter-spacing:-.03em;line-height:1;font-weight:900}
+.sheet-addr{margin:8px 0 0;font-size:14px;font-weight:600;color:#333}
+.sheet-credit{margin:10px 0 0;font-size:11px;color:var(--muted);font-weight:600}
+.sheet-maps{display:inline-flex;margin-top:16px;align-items:center;gap:8px;border:1.5px solid var(--ink);border-radius:999px;padding:10px 16px;font-weight:800;font-size:14px;text-decoration:none;background:white;min-height:44px}
+.sheet-maps:hover,.sheet-maps:focus-visible{background:var(--ink);color:white;outline:none}
+body.sheet-lock{overflow:hidden}
+
 footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);font-weight:600;padding-top:12px;border-top:1px solid #DDD3B8}
 </style>
 </head>
@@ -199,7 +230,6 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
     <div class="stat"><b>5</b><span>dias</span></div>
     <div class="stat"><b>58</b><span>paragens</span></div>
     <div class="stat"><b>1</b><span>base · Venders</span></div>
-    <div class="stat"><b>CPH</b><span>chegada 12:52 · qui</span></div>
   </div>
 
   <!-- MAP -->
@@ -213,10 +243,14 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <path d="M740 55 L945 55 L945 195 L775 205 L735 140 Z" fill="#FDF9EE"/>
       <path d="M620 340 L820 340 L860 470 L700 540 L600 460 Z" fill="#FDF9EE"/>
       <!-- parks -->
-      <ellipse cx="180" cy="180" rx="90" ry="48" fill="#CBD8B0"/>
-      <ellipse cx="420" cy="180" rx="110" ry="42" fill="#CBD8B0"/>
-      <ellipse cx="250" cy="380" rx="80" ry="36" fill="#CBD8B0"/>
-      <rect x="560" y="90" width="70" height="90" rx="12" fill="#CBD8B0"/>
+      <g fill="#CBD8B0" stroke="#CBD8B0" stroke-width="10" stroke-linejoin="round">
+        <path d="M205 152 L282 146 L296 178 L270 204 L214 198 Z"/>
+        <path d="M548 98 L628 92 L640 150 L606 178 L556 166 Z"/>
+        <path d="M468 246 L522 242 L528 264 L474 268 Z"/>
+        <path d="M322 292 L352 288 L356 318 L326 322 Z"/>
+        <path d="M620 186 L645 204 L636 234 L604 234 L595 204 Z"/>
+        <path d="M170 300 L214 296 L218 316 L174 320 Z"/>
+      </g>
       <!-- labels -->
       <g font-family="Archivo,sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#8A968F">
         <text x="620" y="70">ØSTERBRO</text>
@@ -235,32 +269,162 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <!-- QUINTA red -->
       <g class="route" data-day="quinta" stroke="#E83226">
         <path d="M300 118 C360 200, 400 260, 425 318 C440 360, 455 390, 470 405 C460 425, 435 445, 415 435" stroke="#E83226"/>
-        <g fill="#E83226"><circle cx="425" cy="318" r="11"/><circle cx="450" cy="395" r="11"/><circle cx="470" cy="405" r="11"/><circle cx="415" cy="435" r="11"/><circle cx="300" cy="118" r="11"/></g>
-        <g fill="#121212" font-size="10"><text x="425" y="319">1</text><text x="450" y="396">2</text><text x="470" y="406">3</text><text x="415" y="436">7</text><text x="300" y="119">8</text></g>
+        <g class="map-pin" data-place="venders" role="button" tabindex="0" aria-label="Venders">
+          <circle class="hit" cx="425" cy="318" r="18"/>
+          <circle cx="425" cy="318" r="11"/>
+          <text x="425" y="319" fill="#121212" font-size="10">1</text>
+        </g>
+        <g class="map-pin" data-place="hooked" role="button" tabindex="0" aria-label="Hooked">
+          <circle class="hit" cx="450" cy="395" r="18"/>
+          <circle cx="450" cy="395" r="11"/>
+          <text x="450" y="396" fill="#121212" font-size="10">2</text>
+        </g>
+        <g class="map-pin" data-place="hay-house" role="button" tabindex="0" aria-label="Hay House">
+          <circle class="hit" cx="470" cy="405" r="18"/>
+          <circle cx="470" cy="405" r="11"/>
+          <text x="470" y="406" fill="#121212" font-size="10">3</text>
+        </g>
+        <g class="map-pin" data-place="mercado-natal" role="button" tabindex="0" aria-label="Mercado de Natal">
+          <circle class="hit" cx="415" cy="435" r="18"/>
+          <circle cx="415" cy="435" r="11"/>
+          <text x="415" y="436" fill="#121212" font-size="10">7</text>
+        </g>
+        <g class="map-pin" data-place="omar" role="button" tabindex="0" aria-label="OMAR">
+          <circle class="hit" cx="300" cy="118" r="18"/>
+          <circle cx="300" cy="118" r="11"/>
+          <text x="300" y="119" fill="#121212" font-size="10">8</text>
+        </g>
       </g>
       <!-- SEXTA yellow -->
       <g class="route" data-day="sexta" stroke="#E9A426">
         <path d="M410 300 C480 260, 560 220, 660 170 C620 260, 580 330, 560 345 C500 400, 420 440, 380 460 C340 490, 290 515, 265 520" stroke="#E9A426"/>
-        <g fill="#E9A426"><circle cx="480" cy="262" r="11"/><circle cx="620" cy="212" r="11"/><circle cx="660" cy="172" r="11"/><circle cx="560" cy="345" r="11"/><circle cx="580" cy="362" r="11"/><circle cx="380" cy="460" r="11"/><circle cx="265" cy="520" r="11"/></g>
-        <g fill="#121212" font-size="10"><text x="480" y="263">2</text><text x="620" y="213">4</text><text x="660" y="173">5</text><text x="560" y="346">7</text><text x="580" y="363">8</text><text x="380" y="461">9</text><text x="265" y="521">11</text></g>
+        <g class="map-pin" data-place="atelier-september" role="button" tabindex="0" aria-label="Atelier September">
+          <circle class="hit" cx="480" cy="262" r="18"/>
+          <circle cx="480" cy="262" r="11"/>
+          <text x="480" y="263" fill="#121212" font-size="10">2</text>
+        </g>
+        <g class="map-pin" data-place="designmuseum" role="button" tabindex="0" aria-label="Designmuseum">
+          <circle class="hit" cx="620" cy="212" r="18"/>
+          <circle cx="620" cy="212" r="11"/>
+          <text x="620" y="213" fill="#121212" font-size="10">4</text>
+        </g>
+        <g class="map-pin" data-place="kastellet" role="button" tabindex="0" aria-label="Kastellet">
+          <circle class="hit" cx="660" cy="172" r="18"/>
+          <circle cx="660" cy="172" r="11"/>
+          <text x="660" y="173" fill="#121212" font-size="10">5</text>
+        </g>
+        <g class="map-pin" data-place="gasoline-grill" role="button" tabindex="0" aria-label="Gasoline Grill">
+          <circle class="hit" cx="560" cy="345" r="18"/>
+          <circle cx="560" cy="345" r="11"/>
+          <text x="560" y="346" fill="#121212" font-size="10">7</text>
+        </g>
+        <g class="map-pin" data-place="nyhavn" role="button" tabindex="0" aria-label="Nyhavn">
+          <circle class="hit" cx="580" cy="362" r="18"/>
+          <circle cx="580" cy="362" r="11"/>
+          <text x="580" y="363" fill="#121212" font-size="10">8</text>
+        </g>
+        <g class="map-pin" data-place="tivoli" role="button" tabindex="0" aria-label="Tivoli">
+          <circle class="hit" cx="380" cy="460" r="18"/>
+          <circle cx="380" cy="460" r="11"/>
+          <text x="380" y="461" fill="#121212" font-size="10">9</text>
+        </g>
+        <g class="map-pin" data-place="mother" role="button" tabindex="0" aria-label="Mother">
+          <circle class="hit" cx="265" cy="520" r="18"/>
+          <circle cx="265" cy="520" r="11"/>
+          <text x="265" y="521" fill="#121212" font-size="10">11</text>
+        </g>
       </g>
       <!-- SABADO green -->
       <g class="route" data-day="sabado" stroke="#1F7A4D">
         <path d="M140 130 C135 180, 150 210, 165 238 C185 290, 260 320, 340 332 C390 360, 450 410, 480 442 C380 470, 240 475, 172 462" stroke="#1F7A4D"/>
-        <g fill="#1F7A4D"><circle cx="140" cy="130" r="11"/><circle cx="150" cy="200" r="11"/><circle cx="165" cy="238" r="11"/><circle cx="340" cy="332" r="11"/><circle cx="430" cy="392" r="11"/><circle cx="480" cy="442" r="11"/><circle cx="172" cy="462" r="11"/></g>
-        <g fill="white" font-size="10"><text x="140" y="131">1</text><text x="150" y="201">2</text><text x="165" y="239">6</text><text x="340" y="333">11</text><text x="430" y="393">14</text><text x="480" y="443">15</text><text x="172" y="463">16</text></g>
+        <g class="map-pin" data-place="superkilen" role="button" tabindex="0" aria-label="Superkilen">
+          <circle class="hit" cx="140" cy="130" r="18"/>
+          <circle cx="140" cy="130" r="11"/>
+          <text x="140" y="131" fill="white" font-size="10">1</text>
+        </g>
+        <g class="map-pin" data-place="coffee-collective" role="button" tabindex="0" aria-label="Coffee Collective">
+          <circle class="hit" cx="150" cy="200" r="18"/>
+          <circle cx="150" cy="200" r="11"/>
+          <text x="150" y="201" fill="white" font-size="10">2</text>
+        </g>
+        <g class="map-pin" data-place="grod" role="button" tabindex="0" aria-label="Grød">
+          <circle class="hit" cx="165" cy="238" r="18"/>
+          <circle cx="165" cy="238" r="11"/>
+          <text x="165" y="239" fill="white" font-size="10">6</text>
+        </g>
+        <g class="map-pin" data-place="elmegade" role="button" tabindex="0" aria-label="Elmegade">
+          <circle class="hit" cx="340" cy="332" r="18"/>
+          <circle cx="340" cy="332" r="11"/>
+          <text x="340" y="333" fill="white" font-size="10">11</text>
+        </g>
+        <g class="map-pin" data-place="route-66" role="button" tabindex="0" aria-label="Route 66">
+          <circle class="hit" cx="430" cy="392" r="18"/>
+          <circle cx="430" cy="392" r="11"/>
+          <text x="430" y="393" fill="white" font-size="10">14</text>
+        </g>
+        <g class="map-pin" data-place="brand-space-studio" role="button" tabindex="0" aria-label="Brand Space Studio">
+          <circle class="hit" cx="480" cy="442" r="18"/>
+          <circle cx="480" cy="442" r="11"/>
+          <text x="480" y="443" fill="white" font-size="10">15</text>
+        </g>
+        <g class="map-pin" data-place="cleo" role="button" tabindex="0" aria-label="Cleo">
+          <circle class="hit" cx="172" cy="462" r="18"/>
+          <circle cx="172" cy="462" r="11"/>
+          <text x="172" y="463" fill="white" font-size="10">16</text>
+        </g>
       </g>
       <!-- DOMINGO blue -->
       <g class="route" data-day="domingo" stroke="#234EC2">
         <path d="M460 360 C520 340, 700 260, 835 185 C800 300, 730 400, 685 460 C660 485, 640 470, 622 372 C560 380, 500 385, 462 362" stroke="#234EC2"/>
-        <g fill="#234EC2"><circle cx="460" cy="360" r="11"/><circle cx="622" cy="372" r="11"/><circle cx="835" cy="185" r="11"/><circle cx="700" cy="422" r="11"/><circle cx="680" cy="462" r="11"/><circle cx="650" cy="482" r="11"/></g>
-        <g fill="white" font-size="10"><text x="460" y="361">1</text><text x="622" y="373">13</text><text x="835" y="186">8</text><text x="700" y="423">10</text><text x="680" y="463">11</text><text x="650" y="483">12</text></g>
+        <g class="map-pin" data-place="naked" role="button" tabindex="0" aria-label="Naked">
+          <circle class="hit" cx="460" cy="360" r="18"/>
+          <circle cx="460" cy="360" r="11"/>
+          <text x="460" y="361" fill="white" font-size="10">1</text>
+        </g>
+        <g class="map-pin" data-place="barr" role="button" tabindex="0" aria-label="Barr">
+          <circle class="hit" cx="622" cy="372" r="18"/>
+          <circle cx="622" cy="372" r="11"/>
+          <text x="622" y="373" fill="white" font-size="10">13</text>
+        </g>
+        <g class="map-pin" data-place="lille-bakery" role="button" tabindex="0" aria-label="Lille Bakery">
+          <circle class="hit" cx="835" cy="185" r="18"/>
+          <circle cx="835" cy="185" r="11"/>
+          <text x="835" y="186" fill="white" font-size="10">8</text>
+        </g>
+        <g class="map-pin" data-place="ganni-postmodern" role="button" tabindex="0" aria-label="GANNI Postmodern">
+          <circle class="hit" cx="700" cy="422" r="18"/>
+          <circle cx="700" cy="422" r="11"/>
+          <text x="700" y="423" fill="white" font-size="10">10</text>
+        </g>
+        <g class="map-pin" data-place="christiania" role="button" tabindex="0" aria-label="Christiania">
+          <circle class="hit" cx="680" cy="462" r="18"/>
+          <circle cx="680" cy="462" r="11"/>
+          <text x="680" y="463" fill="white" font-size="10">11</text>
+        </g>
+        <g class="map-pin" data-place="ferm-living" role="button" tabindex="0" aria-label="Ferm Living">
+          <circle class="hit" cx="650" cy="482" r="18"/>
+          <circle cx="650" cy="482" r="11"/>
+          <text x="650" y="483" fill="white" font-size="10">12</text>
+        </g>
       </g>
       <!-- SEGUNDA pink -->
       <g class="route" data-day="segunda" stroke="#E88AA0">
         <path d="M430 445 C450 420, 470 405, 485 395 C500 410, 490 435, 460 448 C445 452, 432 450, 430 445" stroke="#E88AA0"/>
-        <g fill="#E88AA0"><circle cx="470" cy="405" r="11"/><circle cx="485" cy="395" r="10"/><circle cx="460" cy="448" r="10"/></g>
-        <g fill="#121212" font-size="10"><text x="470" y="406">1</text><text x="485" y="396">2</text><text x="460" y="449">3</text></g>
+        <g class="map-pin" data-place="illum" role="button" tabindex="0" aria-label="Illum">
+          <circle class="hit" cx="470" cy="405" r="18"/>
+          <circle cx="470" cy="405" r="11"/>
+          <text x="470" y="406" fill="#121212" font-size="10">1</text>
+        </g>
+        <g class="map-pin" data-place="loja-lego" role="button" tabindex="0" aria-label="Loja LEGO">
+          <circle class="hit" cx="485" cy="395" r="18"/>
+          <circle cx="485" cy="395" r="10"/>
+          <text x="485" y="396" fill="#121212" font-size="10">2</text>
+        </g>
+        <g class="map-pin" data-place="hay-house" role="button" tabindex="0" aria-label="Hay House">
+          <circle class="hit" cx="460" cy="448" r="18"/>
+          <circle cx="460" cy="448" r="10"/>
+          <text x="460" y="449" fill="#121212" font-size="10">3</text>
+        </g>
       </g>
     </svg>
     <div class="map-legend">
@@ -277,21 +441,17 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
     <section class="inset-card">
       <header><b>A · Indre By — detalhe</b><span style="font-size:12px;font-weight:700;color:var(--muted)">ONDE TUDO SE CRUZA</span></header>
       <div class="inset-tags">
-        <span class="tag r">Venders · base</span><span class="tag r">Hooked</span><span class="tag r">Hay House</span><span class="tag r">Andersen &amp; Maillard</span>
-        <span class="tag b">Naked</span><span class="tag b">Rezet</span><span class="tag b">Bird</span><span class="tag b">Barr</span>
-        <span class="tag p">ILLUM</span><span class="tag p">LEGO</span><span class="tag p">Strøget</span><span class="tag y">Gasoline Grill</span>
+        <button type="button" class="tag r" data-place="venders">Venders · base</button><button type="button" class="tag r" data-place="hooked">Hooked</button><button type="button" class="tag r" data-place="hay-house">Hay House</button><button type="button" class="tag r" data-place="andersen-maillard">Andersen &amp; Maillard</button>
+        <button type="button" class="tag b" data-place="naked">Naked</button><button type="button" class="tag b" data-place="rezet">Rezet</button><button type="button" class="tag b" data-place="bird-downtown">Bird</button><button type="button" class="tag b" data-place="barr">Barr</button>
+        <button type="button" class="tag p" data-place="illum">ILLUM</button><button type="button" class="tag p" data-place="loja-lego">LEGO</button><button type="button" class="tag p" data-place="stroget">Strøget</button><button type="button" class="tag y" data-place="gasoline-grill">Gasoline Grill</button>
       </div>
       <p class="inset-note">O centro foi o ponto de passagem de quase todos os dias: Hay House na quinta e outra vez na segunda, o Strøget das prendas, e o eixo Naked / Rezet / Barr no domingo. É a zona A assinalada a tracejado no mapa.</p>
-    </section>
-    <section class="airport-card" aria-label="Aeroporto">
-      <div class="airport-hero"><div class="plane">✈</div><div class="cph">CPH</div><div style="font-weight:800;margin-top:6px">Aeroporto</div></div>
-      <ul><li>Aeroporto CPH</li><li>Gasoline Grill</li><li>Joe &amp; the Juice</li></ul>
     </section>
   </div>
 
   <div class="days-head">
     <h2>O roteiro,<br>dia a dia.</h2>
-    <p>Listas completas tal como foram vividas. Os números correspondem aos pontos no mapa, a começar de novo em cada dia.</p>
+    <p>Listas completas tal como foram vividas. Os números correspondem aos pontos no mapa, a começar de novo em cada dia. Toca num sítio para ver imagens.</p>
   </div>
 
   <section class="days" id="days">
@@ -300,16 +460,16 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <button class="day-head" data-filter-btn="quinta"><strong>Quinta 12</strong><span>→</span></button>
       <div class="day-body">
         <div class="hood">Nørreport</div>
-        <div class="place"><span class="num">1</span><span>Venders <span class="base-badge">base</span><small>Nørre Voldgade 11 · apartamento</small></span></div>
+        <button type="button" class="place" data-place="venders"><span class="num">1</span><span>Venders <span class="base-badge">base</span><small>Nørre Voldgade 11 · apartamento</small></span></button>
         <div class="hood">Indre By</div>
-        <div class="place"><span class="num">2</span><span>Hooked<small>Klosterstræde 20 · almoço</small></span></div>
-        <div class="place"><span class="num">3</span><span>Hay House</span></div>
-        <div class="place"><span class="num">4</span><span>Uniqlo</span></div>
-        <div class="place"><span class="num">5</span><span>Strøget</span></div>
-        <div class="place"><span class="num">6</span><span>Andersen &amp; Maillard</span></div>
-        <div class="place"><span class="num">7</span><span>Mercado de Natal<small>Nytorv e Gammeltorv</small></span></div>
+        <button type="button" class="place" data-place="hooked"><span class="num">2</span><span>Hooked<small>Klosterstræde 20 · almoço</small></span></button>
+        <button type="button" class="place" data-place="hay-house"><span class="num">3</span><span>Hay House</span></button>
+        <button type="button" class="place" data-place="uniqlo"><span class="num">4</span><span>Uniqlo</span></button>
+        <button type="button" class="place" data-place="stroget"><span class="num">5</span><span>Strøget</span></button>
+        <button type="button" class="place" data-place="andersen-maillard"><span class="num">6</span><span>Andersen &amp; Maillard</span></button>
+        <button type="button" class="place" data-place="mercado-natal"><span class="num">7</span><span>Mercado de Natal<small>Nytorv e Gammeltorv</small></span></button>
         <div class="hood">Nørrebro · Lagos</div>
-        <div class="place"><span class="num">8</span><span>OMAR<small>Refsnæsgade 32 · jantar</small></span></div>
+        <button type="button" class="place" data-place="omar"><span class="num">8</span><span>OMAR<small>Refsnæsgade 32 · jantar</small></span></button>
       </div>
     </article>
 
@@ -318,20 +478,20 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <button class="day-head" data-filter-btn="sexta"><strong>Sexta 13</strong><span>→</span></button>
       <div class="day-body">
         <div class="hood">Indre By · Norte</div>
-        <div class="place"><span class="num">1</span><span>Lille Petra</span></div>
-        <div class="place"><span class="num">2</span><span>Atelier September <small>(por fora)</small></span></div>
-        <div class="place"><span class="num">3</span><span>Rosenborg <small>(por fora)</small></span></div>
+        <button type="button" class="place" data-place="lille-petra"><span class="num">1</span><span>Lille Petra</span></button>
+        <button type="button" class="place" data-place="atelier-september"><span class="num">2</span><span>Atelier September <small>(por fora)</small></span></button>
+        <button type="button" class="place" data-place="rosenborg"><span class="num">3</span><span>Rosenborg <small>(por fora)</small></span></button>
         <div class="hood">Frederiksstaden · Østerbro</div>
-        <div class="place"><span class="num">4</span><span>Designmuseum<small>Bredgade</small></span></div>
-        <div class="place"><span class="num">5</span><span>Kastellet</span></div>
-        <div class="place"><span class="num">6</span><span>Pequena Sereia</span></div>
-        <div class="place"><span class="num">7</span><span>Gasoline Grill<small>Landgreven 10 · almoço</small></span></div>
+        <button type="button" class="place" data-place="designmuseum"><span class="num">4</span><span>Designmuseum<small>Bredgade</small></span></button>
+        <button type="button" class="place" data-place="kastellet"><span class="num">5</span><span>Kastellet</span></button>
+        <button type="button" class="place" data-place="pequena-sereia"><span class="num">6</span><span>Pequena Sereia</span></button>
+        <button type="button" class="place" data-place="gasoline-grill"><span class="num">7</span><span>Gasoline Grill<small>Landgreven 10 · almoço</small></span></button>
         <div class="hood">Nyhavn</div>
-        <div class="place"><span class="num">8</span><span>Nyhavn</span></div>
+        <button type="button" class="place" data-place="nyhavn"><span class="num">8</span><span>Nyhavn</span></button>
         <div class="hood">Vesterbro</div>
-        <div class="place"><span class="num">9</span><span>Tivoli <small>(por fora)</small></span></div>
-        <div class="place"><span class="num">10</span><span>WarPigs<small>uma cerveja</small></span></div>
-        <div class="place"><span class="num">11</span><span>Mother<small>Kødbyen · jantar</small></span></div>
+        <button type="button" class="place" data-place="tivoli"><span class="num">9</span><span>Tivoli <small>(por fora)</small></span></button>
+        <button type="button" class="place" data-place="warpigs"><span class="num">10</span><span>WarPigs<small>uma cerveja</small></span></button>
+        <button type="button" class="place" data-place="mother"><span class="num">11</span><span>Mother<small>Kødbyen · jantar</small></span></button>
       </div>
     </article>
 
@@ -340,25 +500,25 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <button class="day-head" data-filter-btn="sabado"><strong>Sábado 14</strong><span>→</span></button>
       <div class="day-body">
         <div class="hood">Nørrebro</div>
-        <div class="place"><span class="num">1</span><span>Superkilen</span></div>
+        <button type="button" class="place" data-place="superkilen"><span class="num">1</span><span>Superkilen</span></button>
         <div class="hood">Jægersborggade</div>
-        <div class="place"><span class="num">2</span><span>Coffee Collective<small>ou Rondo · pequeno-almoço</small></span></div>
-        <div class="place"><span class="num">3</span><span>Vanishing Point</span></div>
-        <div class="place"><span class="num">4</span><span>My Favourite Things</span></div>
-        <div class="place"><span class="num">5</span><span>Mochi Copenhagen</span></div>
-        <div class="place"><span class="num">6</span><span>Grød<small>Jægersborggade 50 · almoço</small></span></div>
-        <div class="place"><span class="num">7</span><span>BRÆT</span></div>
-        <div class="place"><span class="num">8</span><span>Cemitério Assistens</span></div>
-        <div class="place"><span class="num">9</span><span>Friheden <small>(por fora)</small></span></div>
-        <div class="place"><span class="num">10</span><span>Ravnsborggade<small>antiguidades</small></span></div>
-        <div class="place"><span class="num">11</span><span>Elmegade</span></div>
-        <div class="place"><span class="num">12</span><span>Blågårdsgade</span></div>
-        <div class="place"><span class="num">13</span><span>Perfectly Worn Vintage</span></div>
-        <div class="place"><span class="num">14</span><span>Route 66<small>vinil</small></span></div>
+        <button type="button" class="place" data-place="coffee-collective"><span class="num">2</span><span>Coffee Collective<small>ou Rondo · pequeno-almoço</small></span></button>
+        <button type="button" class="place" data-place="vanishing-point"><span class="num">3</span><span>Vanishing Point</span></button>
+        <button type="button" class="place" data-place="my-favourite-things"><span class="num">4</span><span>My Favourite Things</span></button>
+        <button type="button" class="place" data-place="mochi-copenhagen"><span class="num">5</span><span>Mochi Copenhagen</span></button>
+        <button type="button" class="place" data-place="grod"><span class="num">6</span><span>Grød<small>Jægersborggade 50 · almoço</small></span></button>
+        <button type="button" class="place" data-place="braet"><span class="num">7</span><span>BRÆT</span></button>
+        <button type="button" class="place" data-place="assistens"><span class="num">8</span><span>Cemitério Assistens</span></button>
+        <button type="button" class="place" data-place="friheden"><span class="num">9</span><span>Friheden <small>(por fora)</small></span></button>
+        <button type="button" class="place" data-place="ravnsborggade"><span class="num">10</span><span>Ravnsborggade<small>antiguidades</small></span></button>
+        <button type="button" class="place" data-place="elmegade"><span class="num">11</span><span>Elmegade</span></button>
+        <button type="button" class="place" data-place="blagaardsgade"><span class="num">12</span><span>Blågårdsgade</span></button>
+        <button type="button" class="place" data-place="perfectly-worn-vintage"><span class="num">13</span><span>Perfectly Worn Vintage</span></button>
+        <button type="button" class="place" data-place="route-66"><span class="num">14</span><span>Route 66<small>vinil</small></span></button>
         <div class="hood">Indre By</div>
-        <div class="place"><span class="num">15</span><span>Brand Space Studio</span></div>
+        <button type="button" class="place" data-place="brand-space-studio"><span class="num">15</span><span>Brand Space Studio</span></button>
         <div class="hood">Nørrebro · Rantzausgade</div>
-        <div class="place"><span class="num">16</span><span>Cleo<small>Rantzausgade 58B · jantar 20:30</small></span></div>
+        <button type="button" class="place" data-place="cleo"><span class="num">16</span><span>Cleo<small>Rantzausgade 58B · jantar 20:30</small></span></button>
       </div>
     </article>
 
@@ -367,21 +527,21 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <button class="day-head" data-filter-btn="domingo"><strong>Domingo 15</strong><span>→</span></button>
       <div class="day-body">
         <div class="hood">Indre By</div>
-        <div class="place"><span class="num">1</span><span>Naked</span></div>
-        <div class="place"><span class="num">2</span><span>Rezet</span></div>
-        <div class="place"><span class="num">3</span><span>Hart Bageri</span></div>
-        <div class="place"><span class="num">4</span><span>Salomon</span></div>
-        <div class="place"><span class="num">5</span><span>Bird: Downtown<small>Palægade 8</small></span></div>
-        <div class="place"><span class="num">6</span><span>Notre Dame</span></div>
-        <div class="place"><span class="num">7</span><span>Studio Arhoj <small>(por fora)</small></span></div>
+        <button type="button" class="place" data-place="naked"><span class="num">1</span><span>Naked</span></button>
+        <button type="button" class="place" data-place="rezet"><span class="num">2</span><span>Rezet</span></button>
+        <button type="button" class="place" data-place="hart-bageri"><span class="num">3</span><span>Hart Bageri</span></button>
+        <button type="button" class="place" data-place="salomon"><span class="num">4</span><span>Salomon</span></button>
+        <button type="button" class="place" data-place="bird-downtown"><span class="num">5</span><span>Bird: Downtown<small>Palægade 8</small></span></button>
+        <button type="button" class="place" data-place="notre-dame"><span class="num">6</span><span>Notre Dame</span></button>
+        <button type="button" class="place" data-place="studio-arhoj"><span class="num">7</span><span>Studio Arhoj <small>(por fora)</small></span></button>
         <div class="hood">Refshaleøen</div>
-        <div class="place"><span class="num">8</span><span>Lille Bakery</span></div>
-        <div class="place"><span class="num">9</span><span>Noma Projects</span></div>
+        <button type="button" class="place" data-place="lille-bakery"><span class="num">8</span><span>Lille Bakery</span></button>
+        <button type="button" class="place" data-place="noma-projects"><span class="num">9</span><span>Noma Projects</span></button>
         <div class="hood">Christianshavn · Holmen</div>
-        <div class="place"><span class="num">10</span><span>GANNI Postmodern</span></div>
-        <div class="place"><span class="num">11</span><span>Christiania</span></div>
-        <div class="place"><span class="num">12</span><span>Ferm Living</span></div>
-        <div class="place"><span class="num">13</span><span>Barr<small>jantar 20:00 · metro às 19:10</small></span></div>
+        <button type="button" class="place" data-place="ganni-postmodern"><span class="num">10</span><span>GANNI Postmodern</span></button>
+        <button type="button" class="place" data-place="christiania"><span class="num">11</span><span>Christiania</span></button>
+        <button type="button" class="place" data-place="ferm-living"><span class="num">12</span><span>Ferm Living</span></button>
+        <button type="button" class="place" data-place="barr"><span class="num">13</span><span>Barr<small>jantar 20:00 · metro às 19:10</small></span></button>
       </div>
     </article>
 
@@ -390,17 +550,17 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <button class="day-head" data-filter-btn="segunda"><strong>Segunda 16</strong><span>→</span></button>
       <div class="day-body">
         <div class="hood">Indre By · Strøget e Købmagergade</div>
-        <div class="place"><span class="num">1</span><span>Illum<small>rota das prendas</small></span></div>
-        <div class="place"><span class="num">2</span><span>Loja LEGO</span></div>
-        <div class="place"><span class="num">3</span><span>Hay House<small>outra vez</small></span></div>
-        <div class="place"><span class="num">4</span><span>Collectors Cage</span></div>
-        <div class="place"><span class="num">5</span><span>Faraos Cigarer</span></div>
-        <div class="place"><span class="num">6</span><span>Design market<small>outlet pop-up de design</small></span></div>
-        <div class="place"><span class="num">7</span><span>Joe &amp; the Juice</span></div>
-        <div class="place"><span class="num">8</span><span>New Balance</span></div>
-        <div class="place"><span class="num">9</span><span>DØP</span></div>
+        <button type="button" class="place" data-place="illum"><span class="num">1</span><span>Illum<small>rota das prendas</small></span></button>
+        <button type="button" class="place" data-place="loja-lego"><span class="num">2</span><span>Loja LEGO</span></button>
+        <button type="button" class="place" data-place="hay-house"><span class="num">3</span><span>Hay House<small>outra vez</small></span></button>
+        <button type="button" class="place" data-place="collectors-cage"><span class="num">4</span><span>Collectors Cage</span></button>
+        <button type="button" class="place" data-place="faraos-cigarer"><span class="num">5</span><span>Faraos Cigarer</span></button>
+        <button type="button" class="place" data-place="design-market"><span class="num">6</span><span>Design market<small>outlet pop-up de design</small></span></button>
+        <button type="button" class="place" data-place="joe-and-the-juice"><span class="num">7</span><span>Joe &amp; the Juice</span></button>
+        <button type="button" class="place" data-place="new-balance"><span class="num">8</span><span>New Balance</span></button>
+        <button type="button" class="place" data-place="dop"><span class="num">9</span><span>DØP</span></button>
         <div class="hood">Aeroporto</div>
-        <div class="place"><span class="num">10</span><span>Aeroporto CPH<small>Gasoline Grill · Joe &amp; the Juice · partida</small></span></div>
+        <button type="button" class="place" data-place="aeroporto-cph"><span class="num">10</span><span>Aeroporto CPH<small>Gasoline Grill · Joe &amp; the Juice · partida</small></span></button>
       </div>
     </article>
   </section>
@@ -450,5 +610,137 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
   });
 })();
 </script>
+
+<div class="sheet-root" id="place-sheet" hidden>
+  <div class="sheet-backdrop" data-sheet-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <button type="button" class="sheet-close" data-sheet-close aria-label="Fechar">×</button>
+    <div class="sheet-carousel" id="sheet-carousel"></div>
+    <div class="sheet-dots" id="sheet-dots"></div>
+    <div class="sheet-body">
+      <p class="sheet-kicker" id="sheet-zone"></p>
+      <h2 id="sheet-title"></h2>
+      <p class="sheet-addr" id="sheet-addr"></p>
+      <p class="sheet-credit" id="sheet-credit"></p>
+      <a class="sheet-maps" id="sheet-maps" target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var PLACES = {"venders": {"name": "Venders", "zone": "Nørreport", "address": "Nørre Voldgade 11", "maps": "Nørre Voldgade 11 Copenhagen", "photos": []}, "hooked": {"name": "Hooked", "zone": "Indre By", "address": "Klosterstræde 20", "maps": "Hooked Klosterstræde 20 Copenhagen", "photos": [{"src": "img/hooked-1.jpg", "credit": "© Hooked, site oficial"}, {"src": "img/hooked-2.jpg", "credit": "© Hooked, site oficial"}]}, "hay-house": {"name": "Hay House", "zone": "Indre By", "address": "", "maps": "Hay House Copenhagen", "photos": [{"src": "img/hay-house-1.jpg", "credit": "© HAY, site oficial"}]}, "uniqlo": {"name": "Uniqlo", "zone": "Indre By", "address": "", "maps": "Uniqlo Copenhagen", "photos": []}, "stroget": {"name": "Strøget", "zone": "Indre By", "address": "", "maps": "Strøget Copenhagen", "photos": [{"src": "img/stroget-1.jpg", "credit": "Tony Webster · CC BY-SA 2.0"}, {"src": "img/stroget-2.jpg", "credit": "Aram Zucker-Scharff · CC BY 2.0"}, {"src": "img/stroget-3.jpg", "credit": "G Da · CC BY-SA 3.0"}]}, "andersen-maillard": {"name": "Andersen & Maillard", "zone": "Indre By", "address": "", "maps": "Andersen & Maillard Copenhagen", "photos": [{"src": "img/andersen-maillard-1.jpg", "credit": "© Andersen & Maillard, site oficial"}, {"src": "img/andersen-maillard-2.jpg", "credit": "© Andersen & Maillard, site oficial"}, {"src": "img/andersen-maillard-3.jpg", "credit": "© Andersen & Maillard, site oficial"}]}, "mercado-natal": {"name": "Mercado de Natal", "zone": "Indre By", "address": "Nytorv e Gammeltorv", "maps": "Nytorv Gammeltorv Christmas market Copenhagen", "photos": [{"src": "img/mercado-natal-1.jpg", "credit": "Leif Jørgensen · CC BY-SA 4.0"}, {"src": "img/mercado-natal-2.jpg", "credit": "Liberaler Humanist · CC BY-SA 3.0"}, {"src": "img/mercado-natal-3.jpg", "credit": "Daniel · CC BY 2.0"}]}, "omar": {"name": "OMAR", "zone": "Nørrebro · Lagos", "address": "Refsnæsgade 32", "maps": "OMAR Refsnæsgade 32 Copenhagen", "photos": [{"src": "img/omar-1.jpg", "credit": "© OMAR, site oficial"}, {"src": "img/omar-2.jpg", "credit": "© OMAR, site oficial"}, {"src": "img/omar-3.jpg", "credit": "© OMAR, site oficial"}]}, "lille-petra": {"name": "Lille Petra", "zone": "Indre By · Norte", "address": "", "maps": "Lille Petra Copenhagen", "photos": []}, "atelier-september": {"name": "Atelier September", "zone": "Indre By · Norte", "address": "", "maps": "Atelier September Copenhagen", "photos": [{"src": "img/atelier-september-1.jpg", "credit": "Lou Stejskal · CC BY 2.0"}]}, "rosenborg": {"name": "Rosenborg", "zone": "Indre By · Norte", "address": "", "maps": "Rosenborg Castle Copenhagen", "photos": [{"src": "img/rosenborg-1.jpg", "credit": "kallerna · CC BY-SA 4.0"}, {"src": "img/rosenborg-2.jpg", "credit": "Marco Almbauer · CC0"}, {"src": "img/rosenborg-3.jpg", "credit": "Acediscovery · CC BY 4.0"}]}, "designmuseum": {"name": "Designmuseum", "zone": "Frederiksstaden · Østerbro", "address": "Bredgade", "maps": "Designmuseum Danmark Bredgade Copenhagen", "photos": [{"src": "img/designmuseum-1.jpg", "credit": "Patti Manolis · CC BY 2.0"}, {"src": "img/designmuseum-2.jpg", "credit": "Jasparbang · CC BY-SA 4.0"}, {"src": "img/designmuseum-3.jpg", "credit": "Rob Deutscher · CC BY 2.0"}]}, "kastellet": {"name": "Kastellet", "zone": "Frederiksstaden · Østerbro", "address": "", "maps": "Kastellet Copenhagen", "photos": [{"src": "img/kastellet-1.jpg", "credit": "Jakub Hałun · CC BY-SA 4.0"}, {"src": "img/kastellet-2.jpg", "credit": "Bob Collowan · CC BY-SA 3.0"}, {"src": "img/kastellet-3.jpg", "credit": "Tony Webster · CC BY 2.0"}]}, "pequena-sereia": {"name": "Pequena Sereia", "zone": "Frederiksstaden · Østerbro", "address": "", "maps": "The Little Mermaid Copenhagen", "photos": []}, "gasoline-grill": {"name": "Gasoline Grill", "zone": "Frederiksstaden · Østerbro", "address": "Landgreven 10", "maps": "Gasoline Grill Landgreven 10 Copenhagen", "photos": [{"src": "img/gasoline-grill-1.jpg", "credit": "Josikersul · CC BY-SA 4.0"}]}, "nyhavn": {"name": "Nyhavn", "zone": "Nyhavn", "address": "", "maps": "Nyhavn Copenhagen", "photos": [{"src": "img/nyhavn-1.jpg", "credit": "Moahim · CC BY-SA 4.0"}, {"src": "img/nyhavn-2.jpg", "credit": "Jakub Hałun · CC BY-SA 4.0"}, {"src": "img/nyhavn-3.jpg", "credit": "Jakub Hałun · CC BY-SA 4.0"}]}, "tivoli": {"name": "Tivoli", "zone": "Vesterbro", "address": "", "maps": "Tivoli Gardens Copenhagen", "photos": [{"src": "img/tivoli-1.jpg", "credit": "Vintage Fan 5678 · CC BY-SA 4.0"}, {"src": "img/tivoli-2.jpg", "credit": "Junielib · CC BY-SA 4.0"}, {"src": "img/tivoli-3.jpg", "credit": "Suicasmo · CC BY-SA 4.0"}]}, "warpigs": {"name": "WarPigs", "zone": "Vesterbro", "address": "", "maps": "WarPigs Copenhagen Kødbyen", "photos": [{"src": "img/warpigs-1.jpg", "credit": "Ramblersen2 · CC BY-SA 4.0"}]}, "mother": {"name": "Mother", "zone": "Vesterbro", "address": "Kødbyen", "maps": "Mother pizza Kødbyen Copenhagen", "photos": []}, "superkilen": {"name": "Superkilen", "zone": "Nørrebro", "address": "", "maps": "Superkilen Copenhagen", "photos": [{"src": "img/superkilen-1.jpg", "credit": "Lorie Shaull · CC BY-SA 4.0"}, {"src": "img/superkilen-2.jpg", "credit": "mike · CC BY-SA 2.0"}, {"src": "img/superkilen-3.jpg", "credit": "Emily · CC BY 2.0"}]}, "coffee-collective": {"name": "Coffee Collective", "zone": "Jægersborggade", "address": "", "maps": "Coffee Collective Jægersborggade Copenhagen", "photos": [{"src": "img/coffee-collective-1.jpg", "credit": "© Coffee Collective, site oficial"}, {"src": "img/coffee-collective-2.jpg", "credit": "© Coffee Collective, site oficial"}, {"src": "img/coffee-collective-3.jpg", "credit": "© Coffee Collective, site oficial"}]}, "vanishing-point": {"name": "Vanishing Point", "zone": "Jægersborggade", "address": "", "maps": "Vanishing Point Jægersborggade Copenhagen", "photos": []}, "my-favourite-things": {"name": "My Favourite Things", "zone": "Jægersborggade", "address": "", "maps": "My Favourite Things Jægersborggade Copenhagen", "photos": []}, "mochi-copenhagen": {"name": "Mochi Copenhagen", "zone": "Jægersborggade", "address": "", "maps": "Mochi Copenhagen Jægersborggade", "photos": []}, "grod": {"name": "Grød", "zone": "Jægersborggade", "address": "Jægersborggade 50", "maps": "Grød Jægersborggade 50 Copenhagen", "photos": [{"src": "img/grod-1.jpg", "credit": "© Grød, site oficial"}, {"src": "img/grod-2.jpg", "credit": "© Grød, site oficial"}, {"src": "img/grod-3.jpg", "credit": "© Grød, site oficial"}]}, "braet": {"name": "BRÆT", "zone": "Jægersborggade", "address": "", "maps": "BRÆT Jægersborggade Copenhagen", "photos": []}, "assistens": {"name": "Cemitério Assistens", "zone": "Jægersborggade", "address": "", "maps": "Assistens Kirkegård Copenhagen", "photos": [{"src": "img/assistens-1.jpg", "credit": "Reloadad · CC BY-SA 4.0"}, {"src": "img/assistens-2.jpg", "credit": "Jonaseckerbom · CC BY-SA 4.0"}, {"src": "img/assistens-3.jpg", "credit": "Wikimedia Commons · Public domain"}]}, "friheden": {"name": "Friheden", "zone": "Jægersborggade", "address": "", "maps": "Café Friheden Nørrebro Copenhagen", "photos": []}, "ravnsborggade": {"name": "Ravnsborggade", "zone": "Jægersborggade", "address": "", "maps": "Ravnsborggade Copenhagen", "photos": [{"src": "img/ravnsborggade-1.jpg", "credit": "Leif Jørgensen · CC BY-SA 4.0"}, {"src": "img/ravnsborggade-2.jpg", "credit": "Leif Jørgensen · CC BY-SA 4.0"}, {"src": "img/ravnsborggade-3.jpg", "credit": "Leif Jørgensen · CC BY-SA 3.0"}]}, "elmegade": {"name": "Elmegade", "zone": "Jægersborggade", "address": "", "maps": "Elmegade Copenhagen", "photos": [{"src": "img/elmegade-1.jpg", "credit": "Leif Jørgensen · CC BY-SA 4.0"}, {"src": "img/elmegade-2.jpg", "credit": "Leif Jørgensen · CC BY-SA 4.0"}, {"src": "img/elmegade-3.jpg", "credit": "Leif Jørgensen · CC BY-SA 4.0"}]}, "blagaardsgade": {"name": "Blågårdsgade", "zone": "Jægersborggade", "address": "", "maps": "Blågårdsgade Copenhagen", "photos": [{"src": "img/blagaardsgade-1.jpg", "credit": "Leif Jørgensen · CC BY-SA 3.0"}, {"src": "img/blagaardsgade-2.jpg", "credit": "Ramblersen2 · CC BY-SA 4.0"}, {"src": "img/blagaardsgade-3.jpg", "credit": "Ramblersen2 · CC BY-SA 4.0"}]}, "perfectly-worn-vintage": {"name": "Perfectly Worn Vintage", "zone": "Jægersborggade", "address": "", "maps": "Perfectly Worn Vintage Copenhagen", "photos": []}, "route-66": {"name": "Route 66", "zone": "Jægersborggade", "address": "", "maps": "Route 66 record shop Copenhagen", "photos": []}, "brand-space-studio": {"name": "Brand Space Studio", "zone": "Indre By", "address": "", "maps": "Brand Space Studio Copenhagen", "photos": []}, "cleo": {"name": "Cleo", "zone": "Nørrebro · Rantzausgade", "address": "Rantzausgade 58B", "maps": "Cleo Rantzausgade 58B Copenhagen", "photos": []}, "naked": {"name": "Naked", "zone": "Indre By", "address": "", "maps": "Naked Copenhagen store", "photos": []}, "rezet": {"name": "Rezet", "zone": "Indre By", "address": "", "maps": "Rezet Copenhagen", "photos": []}, "hart-bageri": {"name": "Hart Bageri", "zone": "Indre By", "address": "", "maps": "Hart Bageri Copenhagen", "photos": [{"src": "img/hart-bageri-1.jpg", "credit": "© Hart Bageri, site oficial"}]}, "salomon": {"name": "Salomon", "zone": "Indre By", "address": "", "maps": "Salomon store Copenhagen", "photos": []}, "bird-downtown": {"name": "Bird: Downtown", "zone": "Indre By", "address": "Palægade 8", "maps": "Bird Downtown Palægade 8 Copenhagen", "photos": []}, "notre-dame": {"name": "Notre Dame", "zone": "Indre By", "address": "", "maps": "Notre Dame store Copenhagen", "photos": []}, "studio-arhoj": {"name": "Studio Arhoj", "zone": "Indre By", "address": "", "maps": "Studio Arhoj Copenhagen", "photos": []}, "lille-bakery": {"name": "Lille Bakery", "zone": "Refshaleøen", "address": "", "maps": "Lille Bakery Refshaleøen Copenhagen", "photos": [{"src": "img/lille-bakery-1.jpg", "credit": "© Lille Bakery, site oficial"}, {"src": "img/lille-bakery-2.jpg", "credit": "© Lille Bakery, site oficial"}]}, "noma-projects": {"name": "Noma Projects", "zone": "Refshaleøen", "address": "", "maps": "Noma Projects Copenhagen", "photos": []}, "ganni-postmodern": {"name": "GANNI Postmodern", "zone": "Christianshavn · Holmen", "address": "", "maps": "GANNI Postmodern Copenhagen", "photos": [{"src": "img/ganni-postmodern-1.jpg", "credit": "© GANNI, site oficial"}]}, "christiania": {"name": "Christiania", "zone": "Christianshavn · Holmen", "address": "", "maps": "Freetown Christiania Copenhagen", "photos": [{"src": "img/christiania-1.jpg", "credit": "Franklin Heijnen · CC BY-SA 2.0"}, {"src": "img/christiania-2.jpg", "credit": "Neptuul · CC BY-SA 4.0"}, {"src": "img/christiania-3.jpg", "credit": "Pudelek · CC BY-SA 4.0"}]}, "ferm-living": {"name": "Ferm Living", "zone": "Christianshavn · Holmen", "address": "", "maps": "Ferm Living Copenhagen", "photos": [{"src": "img/ferm-living-1.jpg", "credit": "© Ferm Living, site oficial"}, {"src": "img/ferm-living-2.jpg", "credit": "© Ferm Living, site oficial"}, {"src": "img/ferm-living-3.jpg", "credit": "© Ferm Living, site oficial"}]}, "barr": {"name": "Barr", "zone": "Christianshavn · Holmen", "address": "", "maps": "Restaurant Barr Copenhagen", "photos": [{"src": "img/barr-1.jpg", "credit": "© Barr, site oficial"}, {"src": "img/barr-2.jpg", "credit": "© Barr, site oficial"}, {"src": "img/barr-3.jpg", "credit": "© Barr, site oficial"}]}, "illum": {"name": "Illum", "zone": "Indre By · Strøget e Købmagergade", "address": "", "maps": "Illum Copenhagen", "photos": [{"src": "img/illum-1.jpg", "credit": "Leif Jørgensen · CC BY-SA 4.0"}, {"src": "img/illum-2.jpg", "credit": "Ramblersen2 · CC BY-SA 4.0"}, {"src": "img/illum-3.jpg", "credit": "Johan Wessman / News Øresund · CC BY 2.0"}]}, "loja-lego": {"name": "Loja LEGO", "zone": "Indre By · Strøget e Købmagergade", "address": "", "maps": "LEGO Store Copenhagen", "photos": [{"src": "img/loja-lego-1.jpg", "credit": "Leif Jørgensen · CC BY-SA 4.0"}, {"src": "img/loja-lego-2.jpg", "credit": "Leif Jørgensen · CC BY-SA 4.0"}, {"src": "img/loja-lego-3.jpg", "credit": "Leif Jørgensen · CC BY-SA 4.0"}]}, "collectors-cage": {"name": "Collectors Cage", "zone": "Indre By · Strøget e Købmagergade", "address": "", "maps": "Collectors Cage Copenhagen", "photos": []}, "faraos-cigarer": {"name": "Faraos Cigarer", "zone": "Indre By · Strøget e Købmagergade", "address": "", "maps": "Faraos Cigarer Copenhagen", "photos": [{"src": "img/faraos-cigarer-1.jpg", "credit": "Leif Jørgensen · CC BY-SA 4.0"}, {"src": "img/faraos-cigarer-2.jpg", "credit": "Jorge Franganillo · CC BY 2.0"}]}, "design-market": {"name": "Design market", "zone": "Indre By · Strøget e Købmagergade", "address": "", "maps": "Design market outlet Copenhagen", "photos": []}, "joe-and-the-juice": {"name": "Joe & the Juice", "zone": "Indre By · Strøget e Købmagergade", "address": "", "maps": "Joe and the Juice Strøget Copenhagen", "photos": []}, "new-balance": {"name": "New Balance", "zone": "Indre By · Strøget e Købmagergade", "address": "", "maps": "New Balance store Copenhagen", "photos": []}, "dop": {"name": "DØP", "zone": "Indre By · Strøget e Købmagergade", "address": "", "maps": "DØP hot dog Copenhagen", "photos": []}, "aeroporto-cph": {"name": "Aeroporto CPH", "zone": "Aeroporto", "address": "", "maps": "Copenhagen Airport CPH", "photos": [{"src": "img/aeroporto-cph-1.jpg", "credit": "Dicklyon · CC BY-SA 4.0"}, {"src": "img/aeroporto-cph-2.jpg", "credit": "Thomas Dahlstrøm Nielsen · CC BY 4.0"}]}};
+  var root = document.getElementById("place-sheet");
+  var carousel = document.getElementById("sheet-carousel");
+  var dots = document.getElementById("sheet-dots");
+  var title = document.getElementById("sheet-title");
+  var zone = document.getElementById("sheet-zone");
+  var addr = document.getElementById("sheet-addr");
+  var credit = document.getElementById("sheet-credit");
+  var maps = document.getElementById("sheet-maps");
+  var lastFocus = null;
+  var currentId = null;
+
+  function setCredit(i){
+    var p = PLACES[currentId];
+    if(!p || !p.photos.length){ credit.textContent = ""; credit.hidden = true; return; }
+    var ph = p.photos[i] || p.photos[0];
+    credit.hidden = false;
+    credit.textContent = "Foto: " + (ph.credit || "");
+  }
+  function activeSlide(){
+    if(!carousel.scrollWidth) return 0;
+    var w = carousel.clientWidth || 1;
+    return Math.round(carousel.scrollLeft / w);
+  }
+  function syncDots(){
+    var i = activeSlide();
+    Array.prototype.forEach.call(dots.children, function(b, idx){
+      b.classList.toggle("is-on", idx===i);
+    });
+    setCredit(i);
+  }
+  carousel.addEventListener("scroll", function(){ syncDots(); }, {passive:true});
+
+  function openPlace(id, fromHash){
+    var p = PLACES[id];
+    if(!p) return;
+    currentId = id;
+    lastFocus = document.activeElement;
+    title.textContent = p.name;
+    zone.textContent = p.zone || "";
+    if(p.address){ addr.hidden=false; addr.textContent=p.address; }
+    else { addr.hidden=true; addr.textContent=""; }
+    maps.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(p.maps);
+    carousel.innerHTML = "";
+    dots.innerHTML = "";
+    (p.photos||[]).forEach(function(ph, i){
+      var slide=document.createElement("div");
+      slide.className="sheet-slide";
+      var img=document.createElement("img");
+      img.src=ph.src;
+      img.alt=p.name;
+      slide.appendChild(img);
+      carousel.appendChild(slide);
+      if(p.photos.length>1){
+        var b=document.createElement("button");
+        b.type="button";
+        b.setAttribute("aria-label", "Foto " + (i+1));
+        b.addEventListener("click", function(){ carousel.scrollTo({left: carousel.clientWidth*i, behavior:"smooth"}); });
+        dots.appendChild(b);
+      }
+    });
+    setCredit(0);
+    root.hidden=false;
+    root.classList.add("is-open");
+    document.body.classList.add("sheet-lock");
+    if(!fromHash){
+      if(history.replaceState) history.replaceState(null, "", "#p=" + id);
+      else location.hash = "p=" + id;
+    }
+    root.querySelector(".sheet-close").focus();
+    requestAnimationFrame(function(){ carousel.scrollLeft=0; syncDots(); });
+  }
+  function closePlace(){
+    if(!root.classList.contains("is-open")) return;
+    root.classList.remove("is-open");
+    root.hidden=true;
+    document.body.classList.remove("sheet-lock");
+    currentId=null;
+    if((location.hash||"").indexOf("#p=")==0){
+      if(history.replaceState) history.replaceState(null, "", location.pathname + location.search);
+      else location.hash = "";
+    }
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.addEventListener("click", function(e){
+    var btn = e.target.closest("[data-place]");
+    if(btn && btn.getAttribute("data-place")){
+      e.preventDefault();
+      e.stopPropagation();
+      openPlace(btn.getAttribute("data-place"));
+    }
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key==="Escape") closePlace();
+    if((e.key==="Enter"||e.key===" ") && e.target.classList && e.target.classList.contains("map-pin")){
+      e.preventDefault();
+      openPlace(e.target.getAttribute("data-place"));
+    }
+  });
+  root.querySelectorAll("[data-sheet-close]").forEach(function(el){
+    el.addEventListener("click", closePlace);
+  });
+  function fromHash(){
+    var m = (location.hash||"").match(/^#p=([a-z0-9-]+)$/);
+    if(m && PLACES[m[1]]) openPlace(m[1], true);
+    else closePlace();
+  }
+  window.addEventListener("hashchange", fromHash);
+  if(location.hash) fromHash();
+})();
+</script>
+
 </body>
 </html>
