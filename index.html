@@ -48,8 +48,9 @@ button{font-family:inherit;cursor:pointer;min-height:44px}
 
 header.top{display:flex;justify-content:space-between;gap:32px;align-items:flex-start;padding:28px 0 18px;flex-wrap:wrap}
 .title-block{flex:1;min-width:280px}
-h1{font-size:clamp(56px,9vw,108px);line-height:.88;letter-spacing:-.04em;font-weight:900;margin:0}
+h1{font-size:min(108px,13.5vw);white-space:nowrap;line-height:.88;letter-spacing:-.04em;font-weight:900;margin:0}
 h1 span{color:var(--red)}
+@media(min-width:701px){h1{font-size:min(108px,calc((100vw - 290px)/5.8))}}
 .subtitle{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:14px}
 .date{font-weight:800;font-size:18px;letter-spacing:-.02em}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--ink);display:inline-block}
@@ -169,7 +170,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
 
   <header class="top">
     <div class="title-block">
-      <h1>Copen-<br>haga<span>.</span></h1>
+      <h1>Copenhaga<span>.</span></h1>
       <div class="subtitle">
         <span class="date">12–16 nov 2026</span>
       </div>
