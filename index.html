@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Archivo+Expanded:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <style>
 :root{
   --bg:#F6F1E3;
@@ -91,35 +92,36 @@ h1 span{color:var(--red)}
 .stat:nth-child(1){background:#FFE9E6}.stat:nth-child(2){background:#FFF3C4}.stat:nth-child(3){background:#DFF0E3}.stat:nth-child(4){background:#E6EBFF}
 @media(max-width:420px){.stats{grid-template-columns:1fr 1fr 1fr}}
 
-/* Map */
-.map-card{background:var(--paper);border:1.5px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:6px 6px 0 rgba(18,18,18,.08)}
-.map-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1.5px solid var(--ink);flex-wrap:wrap;gap:10px}
+/* Map (Leaflet) */
+.map-card{position:relative;z-index:0;background:var(--paper);border:1.5px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:6px 6px 0 rgba(18,18,18,.08)}
+.map-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1.5px solid var(--ink);flex-wrap:wrap;gap:6px 10px}
 .map-head strong{font-size:15px;letter-spacing:-.01em}
 .map-head span{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.map-svg{width:100%;height:auto;display:block;background:#FDF9EE}
-.route{transition:opacity .25s}
-.route path{fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-.route circle{stroke-width:2;fill:white}
-.route text{font-family:"Archivo",sans-serif;font-weight:800;text-anchor:middle;dominant-baseline:central;pointer-events:none}
-body[data-filter="quinta"] .route:not([data-day="quinta"]),
-body[data-filter="sexta"] .route:not([data-day="sexta"]),
-body[data-filter="sabado"] .route:not([data-day="sabado"]),
-body[data-filter="domingo"] .route:not([data-day="domingo"]),
-body[data-filter="segunda"] .route:not([data-day="segunda"]){opacity:.12}
-.map-legend{display:flex;gap:14px;flex-wrap:wrap;padding:12px 18px;border-top:1px solid #E6DDC6;font-size:12px;font-weight:700}
+.map-chips{display:flex;gap:6px;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid #E6DDC6;background:var(--paper2)}
+.chip{border:1.5px solid var(--ink);border-radius:999px;padding:6px 13px;font-weight:800;font-size:13px;background:white;color:var(--ink);min-height:36px;display:inline-flex;align-items:center;gap:6px}
+.chip i{width:10px;height:10px;border-radius:50%;display:inline-block;border:1px solid var(--ink)}
+.chip.is-active{background:var(--ink);color:white}
+.chip:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+#cph-map{height:560px;width:100%;background:#F2EFE6;font-family:"Archivo",Helvetica,Arial,sans-serif}
+@media(max-width:700px){#cph-map{height:460px}}
+.map-hint{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:500;background:rgba(18,18,18,.82);color:white;font-size:12px;font-weight:700;padding:7px 12px;border-radius:999px;pointer-events:none;white-space:nowrap;transition:opacity .3s}
+.map-hint.is-off{opacity:0}
+.map-wrap{position:relative}
+.mk{width:28px;height:28px;border-radius:50%;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12.5px;line-height:1;box-shadow:1.5px 1.5px 0 rgba(18,18,18,.55);font-family:"Archivo",Helvetica,Arial,sans-serif}
+.mk.d-quinta{background:var(--red);color:white}.mk.d-sexta{background:var(--yellow);color:var(--ink)}.mk.d-sabado{background:var(--green);color:white}.mk.d-domingo{background:var(--blue);color:white}.mk.d-segunda{background:var(--pink);color:var(--ink)}
+.is-all .mk{width:24px;height:24px;font-size:11px;margin:2px}
+.mk-home{width:34px;height:34px;border-radius:8px;background:var(--ink);color:white;border:2px solid white;box-shadow:0 0 0 1.5px var(--ink),2px 2px 0 rgba(18,18,18,.4);display:flex;align-items:center;justify-content:center;font-size:19px;line-height:1}
+.leaflet-marker-icon:focus-visible .mk,.leaflet-marker-icon:hover .mk{transform:scale(1.15)}
+.leaflet-tooltip.mk-tip{font-family:"Archivo",Helvetica,Arial,sans-serif;font-weight:800;font-size:12.5px;border:1.5px solid var(--ink);border-radius:8px;box-shadow:2px 2px 0 rgba(18,18,18,.25);padding:4px 8px}
+.leaflet-container a.leaflet-control-zoom-in,.leaflet-container a.leaflet-control-zoom-out{color:var(--ink);font-weight:800}
+.leaflet-bar{border:1.5px solid var(--ink)!important;border-radius:10px!important;overflow:hidden}
+.map-reset{background:white;border:1.5px solid var(--ink);border-radius:10px;font-weight:800;font-size:12px;padding:0 10px;min-height:34px;color:var(--ink)}
+.leaflet-control-attribution{font-size:10px}
+.cph-tiles{filter:saturate(.35) sepia(.06) contrast(.96) brightness(1.04)}
+.map-legend{display:flex;gap:8px 14px;flex-wrap:wrap;padding:12px 18px;border-top:1px solid #E6DDC6;font-size:12px;font-weight:700;align-items:center}
 .map-legend i{width:22px;height:4px;display:inline-block;vertical-align:middle;margin-right:6px;border-radius:999px}
-
-/* Detail grid */
-.detail-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
-@media(max-width:860px){.detail-grid{grid-template-columns:1fr}}
-.inset-card{border:1.5px solid var(--ink);border-radius:18px;overflow:hidden;background:var(--paper2)}
-.inset-card header{padding:12px 16px;border-bottom:1.5px solid var(--ink);display:flex;justify-content:space-between;align-items:center}
-.inset-card header b{font-size:13px;letter-spacing:.1em;text-transform:uppercase}
-.inset-tags{display:flex;flex-wrap:wrap;gap:6px;padding:14px 16px}
-.tag{font-size:12px;font-weight:700;border:1.2px solid var(--ink);border-radius:999px;padding:6px 10px;background:white;cursor:pointer;font-family:inherit}
-.tag.r{border-color:var(--red);color:var(--red-dark)} .tag.b{border-color:var(--blue);color:var(--blue-dark)} .tag.p{border-color:var(--pink-dark);color:var(--pink-dark)} .tag.y{border-color:var(--yellow-dark);color:var(--yellow-dark)}
-.tag:hover,.tag:focus-visible{background:var(--ink);color:white;border-color:var(--ink);outline:none}
-.inset-note{padding:0 16px 16px;font-size:13.5px;line-height:1.5;color:#333}
+.map-legend .home{display:inline-flex;align-items:center;gap:6px;margin-left:auto;color:var(--muted)}
+.map-legend .home b{width:18px;height:18px;border-radius:5px;background:var(--ink);color:white;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
 
 /* Days */
 .days-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:28px 0 14px;flex-wrap:wrap}
@@ -158,11 +160,6 @@ body[data-filter="segunda"] .route:not([data-day="segunda"]){opacity:.12}
 .place span{font-size:13.5px;font-weight:600}
 .place small{display:block;font-weight:500;color:var(--muted);font-size:12px}
 
-.map-pin{cursor:pointer}
-.map-pin .hit{fill:transparent;stroke:none}
-.map-pin:hover circle:not(.hit),
-.map-pin:focus-visible circle:not(.hit){stroke-width:3}
-.map-pin:focus{outline:none}
 
 /* Place sheet */
 .sheet-root{position:fixed;inset:0;z-index:80;display:none;align-items:flex-end;justify-content:center}
@@ -233,221 +230,29 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
   </div>
 
   <!-- MAP -->
-  <section class="map-card" aria-label="Mapa estilizado de Copenhaga">
-    <div class="map-head"><strong>Mapa — percursos por cor</strong><span>Indre By ampliado em baixo · A</span></div>
-    <svg class="map-svg" viewBox="0 0 1000 600" role="img" aria-label="Mapa estilizado com os percursos dos cinco dias em Copenhaga">
-      <!-- water / land -->
-      <rect width="1000" height="600" fill="#B7CFC6"/>
-      <path d="M40 40 L620 30 L660 90 L600 170 L640 260 L580 340 L620 460 L560 560 L120 560 L30 420 L60 200 Z" fill="#FDF9EE"/>
-      <path d="M700 40 L960 40 L960 210 L760 230 L700 160 Z" fill="#B7CFC6"/>
-      <path d="M740 55 L945 55 L945 195 L775 205 L735 140 Z" fill="#FDF9EE"/>
-      <path d="M620 340 L820 340 L860 470 L700 540 L600 460 Z" fill="#FDF9EE"/>
-      <!-- parks -->
-      <g fill="#CBD8B0" stroke="#CBD8B0" stroke-width="10" stroke-linejoin="round">
-        <path d="M205 152 L282 146 L296 178 L270 204 L214 198 Z"/>
-        <path d="M548 98 L628 92 L640 150 L606 178 L556 166 Z"/>
-        <path d="M468 246 L522 242 L528 264 L474 268 Z"/>
-        <path d="M322 292 L352 288 L356 318 L326 322 Z"/>
-        <path d="M620 186 L645 204 L636 234 L604 234 L595 204 Z"/>
-        <path d="M170 300 L214 296 L218 316 L174 320 Z"/>
-      </g>
-      <!-- labels -->
-      <g font-family="Archivo,sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#8A968F">
-        <text x="620" y="70">ØSTERBRO</text>
-        <text x="790" y="85">REFSHALEØEN</text>
-        <text x="250" y="135">NØRREBRO</text>
-        <text x="430" y="485">INDRE BY</text>
-        <text x="640" y="335">NYHAVN</text>
-        <text x="130" y="485">VESTERBRO</text>
-        <text x="660" y="505">CHRISTIANSHAVN</text>
-      </g>
-      <!-- inset box A -->
-      <rect x="365" y="275" width="235" height="195" fill="none" stroke="#121212" stroke-width="1.2" stroke-dasharray="6 5"/>
-      <text x="365" y="262" font-family="Archivo" font-weight="900" font-size="14" fill="#121212">A</text>
-      <text x="425" y="295" font-size="18">⌂</text>
-
-      <!-- QUINTA red -->
-      <g class="route" data-day="quinta" stroke="#E83226">
-        <path d="M300 118 C360 200, 400 260, 425 318 C440 360, 455 390, 470 405 C460 425, 435 445, 415 435" stroke="#E83226"/>
-        <g class="map-pin" data-place="venders" role="button" tabindex="0" aria-label="Venders">
-          <circle class="hit" cx="425" cy="318" r="18"/>
-          <circle cx="425" cy="318" r="11"/>
-          <text x="425" y="319" fill="#121212" font-size="10">1</text>
-        </g>
-        <g class="map-pin" data-place="hooked" role="button" tabindex="0" aria-label="Hooked">
-          <circle class="hit" cx="450" cy="395" r="18"/>
-          <circle cx="450" cy="395" r="11"/>
-          <text x="450" y="396" fill="#121212" font-size="10">2</text>
-        </g>
-        <g class="map-pin" data-place="hay-house" role="button" tabindex="0" aria-label="Hay House">
-          <circle class="hit" cx="470" cy="405" r="18"/>
-          <circle cx="470" cy="405" r="11"/>
-          <text x="470" y="406" fill="#121212" font-size="10">3</text>
-        </g>
-        <g class="map-pin" data-place="mercado-natal" role="button" tabindex="0" aria-label="Mercado de Natal">
-          <circle class="hit" cx="415" cy="435" r="18"/>
-          <circle cx="415" cy="435" r="11"/>
-          <text x="415" y="436" fill="#121212" font-size="10">7</text>
-        </g>
-        <g class="map-pin" data-place="omar" role="button" tabindex="0" aria-label="OMAR">
-          <circle class="hit" cx="300" cy="118" r="18"/>
-          <circle cx="300" cy="118" r="11"/>
-          <text x="300" y="119" fill="#121212" font-size="10">8</text>
-        </g>
-      </g>
-      <!-- SEXTA yellow -->
-      <g class="route" data-day="sexta" stroke="#E9A426">
-        <path d="M410 300 C480 260, 560 220, 660 170 C620 260, 580 330, 560 345 C500 400, 420 440, 380 460 C340 490, 290 515, 265 520" stroke="#E9A426"/>
-        <g class="map-pin" data-place="atelier-september" role="button" tabindex="0" aria-label="Atelier September">
-          <circle class="hit" cx="480" cy="262" r="18"/>
-          <circle cx="480" cy="262" r="11"/>
-          <text x="480" y="263" fill="#121212" font-size="10">2</text>
-        </g>
-        <g class="map-pin" data-place="designmuseum" role="button" tabindex="0" aria-label="Designmuseum">
-          <circle class="hit" cx="620" cy="212" r="18"/>
-          <circle cx="620" cy="212" r="11"/>
-          <text x="620" y="213" fill="#121212" font-size="10">4</text>
-        </g>
-        <g class="map-pin" data-place="kastellet" role="button" tabindex="0" aria-label="Kastellet">
-          <circle class="hit" cx="660" cy="172" r="18"/>
-          <circle cx="660" cy="172" r="11"/>
-          <text x="660" y="173" fill="#121212" font-size="10">5</text>
-        </g>
-        <g class="map-pin" data-place="gasoline-grill" role="button" tabindex="0" aria-label="Gasoline Grill">
-          <circle class="hit" cx="560" cy="345" r="18"/>
-          <circle cx="560" cy="345" r="11"/>
-          <text x="560" y="346" fill="#121212" font-size="10">7</text>
-        </g>
-        <g class="map-pin" data-place="nyhavn" role="button" tabindex="0" aria-label="Nyhavn">
-          <circle class="hit" cx="580" cy="362" r="18"/>
-          <circle cx="580" cy="362" r="11"/>
-          <text x="580" y="363" fill="#121212" font-size="10">8</text>
-        </g>
-        <g class="map-pin" data-place="tivoli" role="button" tabindex="0" aria-label="Tivoli">
-          <circle class="hit" cx="380" cy="460" r="18"/>
-          <circle cx="380" cy="460" r="11"/>
-          <text x="380" y="461" fill="#121212" font-size="10">9</text>
-        </g>
-        <g class="map-pin" data-place="mother" role="button" tabindex="0" aria-label="Mother">
-          <circle class="hit" cx="265" cy="520" r="18"/>
-          <circle cx="265" cy="520" r="11"/>
-          <text x="265" y="521" fill="#121212" font-size="10">11</text>
-        </g>
-      </g>
-      <!-- SABADO green -->
-      <g class="route" data-day="sabado" stroke="#1F7A4D">
-        <path d="M140 130 C135 180, 150 210, 165 238 C185 290, 260 320, 340 332 C390 360, 450 410, 480 442 C380 470, 240 475, 172 462" stroke="#1F7A4D"/>
-        <g class="map-pin" data-place="superkilen" role="button" tabindex="0" aria-label="Superkilen">
-          <circle class="hit" cx="140" cy="130" r="18"/>
-          <circle cx="140" cy="130" r="11"/>
-          <text x="140" y="131" fill="white" font-size="10">1</text>
-        </g>
-        <g class="map-pin" data-place="coffee-collective" role="button" tabindex="0" aria-label="Coffee Collective">
-          <circle class="hit" cx="150" cy="200" r="18"/>
-          <circle cx="150" cy="200" r="11"/>
-          <text x="150" y="201" fill="white" font-size="10">2</text>
-        </g>
-        <g class="map-pin" data-place="grod" role="button" tabindex="0" aria-label="Grød">
-          <circle class="hit" cx="165" cy="238" r="18"/>
-          <circle cx="165" cy="238" r="11"/>
-          <text x="165" y="239" fill="white" font-size="10">6</text>
-        </g>
-        <g class="map-pin" data-place="elmegade" role="button" tabindex="0" aria-label="Elmegade">
-          <circle class="hit" cx="340" cy="332" r="18"/>
-          <circle cx="340" cy="332" r="11"/>
-          <text x="340" y="333" fill="white" font-size="10">11</text>
-        </g>
-        <g class="map-pin" data-place="route-66" role="button" tabindex="0" aria-label="Route 66">
-          <circle class="hit" cx="430" cy="392" r="18"/>
-          <circle cx="430" cy="392" r="11"/>
-          <text x="430" y="393" fill="white" font-size="10">14</text>
-        </g>
-        <g class="map-pin" data-place="brand-space-studio" role="button" tabindex="0" aria-label="Brand Space Studio">
-          <circle class="hit" cx="480" cy="442" r="18"/>
-          <circle cx="480" cy="442" r="11"/>
-          <text x="480" y="443" fill="white" font-size="10">15</text>
-        </g>
-        <g class="map-pin" data-place="cleo" role="button" tabindex="0" aria-label="Cleo">
-          <circle class="hit" cx="172" cy="462" r="18"/>
-          <circle cx="172" cy="462" r="11"/>
-          <text x="172" y="463" fill="white" font-size="10">16</text>
-        </g>
-      </g>
-      <!-- DOMINGO blue -->
-      <g class="route" data-day="domingo" stroke="#234EC2">
-        <path d="M460 360 C520 340, 700 260, 835 185 C800 300, 730 400, 685 460 C660 485, 640 470, 622 372 C560 380, 500 385, 462 362" stroke="#234EC2"/>
-        <g class="map-pin" data-place="naked" role="button" tabindex="0" aria-label="Naked">
-          <circle class="hit" cx="460" cy="360" r="18"/>
-          <circle cx="460" cy="360" r="11"/>
-          <text x="460" y="361" fill="white" font-size="10">1</text>
-        </g>
-        <g class="map-pin" data-place="barr" role="button" tabindex="0" aria-label="Barr">
-          <circle class="hit" cx="622" cy="372" r="18"/>
-          <circle cx="622" cy="372" r="11"/>
-          <text x="622" y="373" fill="white" font-size="10">13</text>
-        </g>
-        <g class="map-pin" data-place="lille-bakery" role="button" tabindex="0" aria-label="Lille Bakery">
-          <circle class="hit" cx="835" cy="185" r="18"/>
-          <circle cx="835" cy="185" r="11"/>
-          <text x="835" y="186" fill="white" font-size="10">8</text>
-        </g>
-        <g class="map-pin" data-place="ganni-postmodern" role="button" tabindex="0" aria-label="GANNI Postmodern">
-          <circle class="hit" cx="700" cy="422" r="18"/>
-          <circle cx="700" cy="422" r="11"/>
-          <text x="700" y="423" fill="white" font-size="10">10</text>
-        </g>
-        <g class="map-pin" data-place="christiania" role="button" tabindex="0" aria-label="Christiania">
-          <circle class="hit" cx="680" cy="462" r="18"/>
-          <circle cx="680" cy="462" r="11"/>
-          <text x="680" y="463" fill="white" font-size="10">11</text>
-        </g>
-        <g class="map-pin" data-place="ferm-living" role="button" tabindex="0" aria-label="Ferm Living">
-          <circle class="hit" cx="650" cy="482" r="18"/>
-          <circle cx="650" cy="482" r="11"/>
-          <text x="650" y="483" fill="white" font-size="10">12</text>
-        </g>
-      </g>
-      <!-- SEGUNDA pink -->
-      <g class="route" data-day="segunda" stroke="#E88AA0">
-        <path d="M430 445 C450 420, 470 405, 485 395 C500 410, 490 435, 460 448 C445 452, 432 450, 430 445" stroke="#E88AA0"/>
-        <g class="map-pin" data-place="illum" role="button" tabindex="0" aria-label="Illum">
-          <circle class="hit" cx="470" cy="405" r="18"/>
-          <circle cx="470" cy="405" r="11"/>
-          <text x="470" y="406" fill="#121212" font-size="10">1</text>
-        </g>
-        <g class="map-pin" data-place="loja-lego" role="button" tabindex="0" aria-label="Loja LEGO">
-          <circle class="hit" cx="485" cy="395" r="18"/>
-          <circle cx="485" cy="395" r="10"/>
-          <text x="485" y="396" fill="#121212" font-size="10">2</text>
-        </g>
-        <g class="map-pin" data-place="hay-house" role="button" tabindex="0" aria-label="Hay House">
-          <circle class="hit" cx="460" cy="448" r="18"/>
-          <circle cx="460" cy="448" r="10"/>
-          <text x="460" y="449" fill="#121212" font-size="10">3</text>
-        </g>
-      </g>
-    </svg>
+  <section class="map-card" id="mapa" aria-label="Mapa de Copenhaga com os percursos">
+    <div class="map-head"><strong>Mapa — percursos por dia</strong><span>Toca num ponto para ver o sítio</span></div>
+    <div class="map-chips" role="group" aria-label="Mostrar no mapa">
+      <button type="button" class="chip is-active" data-map-day="all">Todos</button>
+      <button type="button" class="chip" data-map-day="quinta"><i style="background:var(--red)"></i>Quinta</button>
+      <button type="button" class="chip" data-map-day="sexta"><i style="background:var(--yellow)"></i>Sexta</button>
+      <button type="button" class="chip" data-map-day="sabado"><i style="background:var(--green)"></i>Sábado</button>
+      <button type="button" class="chip" data-map-day="domingo"><i style="background:var(--blue)"></i>Domingo</button>
+      <button type="button" class="chip" data-map-day="segunda"><i style="background:var(--pink)"></i>Segunda</button>
+    </div>
+    <div class="map-wrap">
+      <div id="cph-map" role="region" aria-label="Mapa interativo de Copenhaga"></div>
+      <div class="map-hint" id="map-hint">Usa dois dedos para mexer no mapa</div>
+    </div>
     <div class="map-legend">
       <span><i style="background:var(--red)"></i>Quinta</span>
       <span><i style="background:var(--yellow)"></i>Sexta</span>
       <span><i style="background:var(--green)"></i>Sábado</span>
       <span><i style="background:var(--blue)"></i>Domingo</span>
       <span><i style="background:var(--pink)"></i>Segunda</span>
-      <span style="margin-left:auto;color:var(--muted)">⌂ Venders · base</span>
+      <span class="home"><b>⌂</b>Venders · base</span>
     </div>
   </section>
-
-  <div class="detail-grid">
-    <section class="inset-card">
-      <header><b>A · Indre By — detalhe</b><span style="font-size:12px;font-weight:700;color:var(--muted)">ONDE TUDO SE CRUZA</span></header>
-      <div class="inset-tags">
-        <button type="button" class="tag r" data-place="venders">Venders · base</button><button type="button" class="tag r" data-place="hooked">Hooked</button><button type="button" class="tag r" data-place="hay-house">Hay House</button><button type="button" class="tag r" data-place="andersen-maillard">Andersen &amp; Maillard</button>
-        <button type="button" class="tag b" data-place="naked">Naked</button><button type="button" class="tag b" data-place="rezet">Rezet</button><button type="button" class="tag b" data-place="bird-downtown">Bird</button><button type="button" class="tag b" data-place="barr">Barr</button>
-        <button type="button" class="tag p" data-place="illum">ILLUM</button><button type="button" class="tag p" data-place="loja-lego">LEGO</button><button type="button" class="tag p" data-place="stroget">Strøget</button><button type="button" class="tag y" data-place="gasoline-grill">Gasoline Grill</button>
-      </div>
-      <p class="inset-note">O centro foi o ponto de passagem de quase todos os dias: Hay House na quinta e outra vez na segunda, o Strøget das prendas, e o eixo Naked / Rezet / Barr no domingo. É a zona A assinalada a tracejado no mapa.</p>
-    </section>
-  </div>
 
   <div class="days-head">
     <h2>O roteiro,<br>dia a dia.</h2>
@@ -576,7 +381,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
   </section>
 
   <footer>
-    <span>Dados do mapa © OpenStreetMap · Mapa estilizado, não à escala</span>
+    <span>Mapa: © OpenStreetMap · linhas retas entre paragens</span>
     <span>Copenhaga · 12–16 nov 2026</span>
   </footer>
 </div>
@@ -588,6 +393,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
   var days=document.querySelectorAll('.day');
   function setFilter(day){
     body.setAttribute('data-filter', day);
+    if(window.cphMapFilter) window.cphMapFilter(day);
     pills.forEach(function(p){ p.classList.toggle('is-active', p.getAttribute('data-day')===day); });
     days.forEach(function(d){
       var match = day==='all' || d.getAttribute('data-day')===day;
@@ -599,7 +405,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       if(el && window.innerWidth<760){ /* keep map visible on mobile, don't force scroll */ }
     }
   }
-  pills.forEach(function(p){ p.addEventListener('click', function(){ setFilter(p.getAttribute('data-day')); document.querySelector('.map-card').scrollIntoView({behavior:'smooth', block:'nearest'}); }); });
+  pills.forEach(function(p){ p.addEventListener('click', function(){ setFilter(p.getAttribute('data-day')); var mc=document.querySelector('.map-card'); if(mc) mc.scrollIntoView({behavior:'smooth', block:'nearest'}); }); });
   document.querySelectorAll('[data-filter-btn]').forEach(function(btn){
     btn.addEventListener('click', function(){
       var day=btn.getAttribute('data-filter-btn');
@@ -701,6 +507,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
     root.querySelector(".sheet-close").focus();
     requestAnimationFrame(function(){ carousel.scrollLeft=0; syncDots(); });
   }
+  window.cphOpenPlace = function(id){ openPlace(id); };
   function closePlace(){
     if(!root.classList.contains("is-open")) return;
     root.classList.remove("is-open");
@@ -739,6 +546,115 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
   }
   window.addEventListener("hashchange", fromHash);
   if(location.hash) fromHash();
+})();
+</script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+(function(){
+  if(!window.L) return;
+  var DATA = {"coords":{"venders":[55.683132,12.570784],"hooked":[55.679323,12.575245],"hay-house":[55.678976,12.580138],"uniqlo":[55.678714,12.574779],"stroget":[55.677923,12.573044],"andersen-maillard":[55.681361,12.582434],"mercado-natal":[55.6777,12.5723],"omar":[55.695866,12.556285],"lille-petra":[55.6829,12.5822],"atelier-september":[55.687412,12.584984],"rosenborg":[55.685694,12.57742],"designmuseum":[55.686374,12.594408],"kastellet":[55.691383,12.593745],"pequena-sereia":[55.692866,12.59929],"gasoline-grill":[55.683238,12.585147],"nyhavn":[55.679736,12.590886],"tivoli":[55.673416,12.569182],"warpigs":[55.668528,12.55996],"mother":[55.668505,12.557661],"superkilen":[55.699678,12.542397],"coffee-collective":[55.693718,12.542283],"vanishing-point":[55.6931,12.5435],"my-favourite-things":[55.693471,12.543045],"mochi-copenhagen":[55.69272,12.543812],"grod":[55.693602,12.542899],"braet":[55.692258,12.544762],"assistens":[55.690925,12.549442],"friheden":[55.69814,12.541019],"ravnsborggade":[55.688883,12.562355],"elmegade":[55.689831,12.558469],"blagaardsgade":[55.687633,12.559618],"perfectly-worn-vintage":[55.693332,12.542899],"route-66":[55.68867,12.559618],"brand-space-studio":[55.678245,12.576391],"cleo":[55.687832,12.546366],"naked":[55.68129,12.581483],"rezet":[55.680992,12.582132],"hart-bageri":[55.6845,12.588],"salomon":[55.6801,12.5823],"bird-downtown":[55.682318,12.586462],"notre-dame":[55.678779,12.57195],"studio-arhoj":[55.68054,12.57581],"lille-bakery":[55.690093,12.613093],"noma-projects":[55.690153,12.612932],"ganni-postmodern":[55.6727,12.591775],"christiania":[55.677211,12.610452],"ferm-living":[55.6779,12.60021],"barr":[55.677903,12.596268],"illum":[55.679524,12.580251],"loja-lego":[55.67851,12.575954],"collectors-cage":[55.6787,12.5773],"faraos-cigarer":[55.679545,12.574622],"design-market":[55.6806,12.5779],"joe-and-the-juice":[55.679348,12.580352],"new-balance":[55.679907,12.579208],"dop":[55.6813,12.576]},"days":[["quinta",[["venders",1],["hooked",2],["hay-house",3],["uniqlo",4],["stroget",5],["andersen-maillard",6],["mercado-natal",7],["omar",8]]],["sexta",[["lille-petra",1],["atelier-september",2],["rosenborg",3],["designmuseum",4],["kastellet",5],["pequena-sereia",6],["gasoline-grill",7],["nyhavn",8],["tivoli",9],["warpigs",10],["mother",11]]],["sabado",[["superkilen",1],["coffee-collective",2],["vanishing-point",3],["my-favourite-things",4],["mochi-copenhagen",5],["grod",6],["braet",7],["assistens",8],["friheden",9],["ravnsborggade",10],["elmegade",11],["blagaardsgade",12],["perfectly-worn-vintage",13],["route-66",14],["brand-space-studio",15],["cleo",16]]],["domingo",[["naked",1],["rezet",2],["hart-bageri",3],["salomon",4],["bird-downtown",5],["notre-dame",6],["studio-arhoj",7],["lille-bakery",8],["noma-projects",9],["ganni-postmodern",10],["christiania",11],["ferm-living",12],["barr",13]]],["segunda",[["illum",1],["loja-lego",2],["hay-house",3],["collectors-cage",4],["faraos-cigarer",5],["design-market",6],["joe-and-the-juice",7],["new-balance",8],["dop",9]]]]};
+  var COL = {quinta:"#E83226",sexta:"#E9A426",sabado:"#1F7A4D",domingo:"#234EC2",segunda:"#E88AA0"};
+  var DNAME = {quinta:"Quinta",sexta:"Sexta",sabado:"Sábado",domingo:"Domingo",segunda:"Segunda"};
+  var NAMES = {};
+  document.querySelectorAll('.day .place[data-place]').forEach(function(b){
+    var id=b.getAttribute('data-place'); if(NAMES[id]) return;
+    var t=b.querySelector('.num + span'); if(!t) return;
+    var c=t.cloneNode(true); c.querySelectorAll('small,.base-badge').forEach(function(x){x.remove();});
+    NAMES[id]=c.textContent.trim();
+  });
+  var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  var map = L.map('cph-map', {
+    zoomControl:true, scrollWheelZoom:false, dragging:!coarse, touchZoom:true, tap:false,
+    attributionControl:true, zoomSnap:0.25, minZoom:11, maxZoom:18
+  });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom:19, className:'cph-tiles',
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+  map.attributionControl.setPrefix(false);
+  // desktop: ctrl/cmd + wheel zooms, plain wheel scrolls the page
+  map.getContainer().addEventListener('wheel', function(e){
+    if(e.ctrlKey||e.metaKey){ e.preventDefault(); map.setZoom(map.getZoom() + (e.deltaY<0?0.5:-0.5)); }
+  }, {passive:false});
+  var hint=document.getElementById('map-hint');
+  if(!coarse){ hint.textContent='Arrasta para mexer · Ctrl + roda para zoom'; }
+  setTimeout(function(){ hint.classList.add('is-off'); }, 4500);
+
+  var groups = {}, allBounds = L.latLngBounds([]);
+  var home = DATA.coords['venders'];
+  DATA.days.forEach(function(d){
+    var day=d[0], stops=d[1], g=L.featureGroup(), line=[];
+    stops.forEach(function(st){ var c=DATA.coords[st[0]]; if(c) line.push(c); });
+    L.polyline(line,{color:'#FFFFFF',weight:8,opacity:.9,lineJoin:'round',interactive:false}).addTo(g);
+    L.polyline(line,{color:COL[day],weight:4,opacity:1,lineJoin:'round',dashArray:null,interactive:false}).addTo(g);
+    stops.forEach(function(st){
+      var id=st[0], n=st[1], c=DATA.coords[id];
+      if(!c || id==='venders') return;
+      var nm=(NAMES[id]||id);
+      var m=L.marker(c,{
+        icon:L.divIcon({className:'',html:'<div class="mk d-'+day+'">'+n+'</div>',iconSize:[28,28],iconAnchor:[14,14]}),
+        title:DNAME[day]+' '+n+' · '+nm, alt:nm, riseOnHover:true, keyboard:true
+      });
+      m.bindTooltip(DNAME[day]+' '+n+' · '+nm,{direction:'top',offset:[0,-14],className:'mk-tip'});
+      m.on('click',function(){ if(window.cphOpenPlace) window.cphOpenPlace(id); });
+      m.addTo(g);
+      allBounds.extend(c);
+    });
+    groups[day]=g;
+  });
+  allBounds.extend(home);
+  var homeM=L.marker(home,{icon:L.divIcon({className:'',html:'<div class="mk-home">⌂</div>',iconSize:[34,34],iconAnchor:[17,17]}),title:'Venders · base',alt:'Venders',zIndexOffset:1000,keyboard:true});
+  homeM.bindTooltip('Venders · base',{direction:'top',offset:[0,-17],className:'mk-tip'});
+  homeM.on('click',function(){ if(window.cphOpenPlace) window.cphOpenPlace('venders'); });
+  homeM.addTo(map);
+
+  var Reset=L.Control.extend({options:{position:'topright'},onAdd:function(){
+    var b=L.DomUtil.create('button','map-reset'); b.type='button'; b.textContent='Recentrar';
+    L.DomEvent.disableClickPropagation(b);
+    b.addEventListener('click',function(){ fit(currentDay); });
+    return b; }});
+  map.addControl(new Reset());
+
+  var currentDay='all', ready=false;
+  function pad(){ return window.innerWidth<700 ? [34,34] : [56,56]; }
+  function fit(day){
+    var b = day==='all' ? allBounds : groups[day].getBounds().extend(home);
+    map.fitBounds(b,{padding:pad(),maxZoom:16,animate:!!ready});
+  }
+  function show(day){
+    currentDay=day;
+    map.getContainer().classList.toggle('is-all', day==='all');
+    Object.keys(groups).forEach(function(k){
+      if(day==='all'||day===k) groups[k].addTo(map); else map.removeLayer(groups[k]);
+    });
+    document.querySelectorAll('[data-map-day]').forEach(function(c){
+      var on=c.getAttribute('data-map-day')===day; c.classList.toggle('is-active',on); c.setAttribute('aria-pressed',on?'true':'false');
+    });
+    fit(day);
+  }
+  window.cphMapFilter=function(day){ if(day!==currentDay) show(day); };
+  document.querySelectorAll('[data-map-day]').forEach(function(c){
+    c.addEventListener('click',function(){
+      var day=c.getAttribute('data-map-day');
+      var pill=document.querySelector('.pill[data-day="'+day+'"]');
+      if(pill) pill.click(); else show(day);
+    });
+  });
+  map.fitBounds(allBounds,{padding:pad(),animate:false});
+  show('all');
+  ready=true;
+  var touched=false;
+  map.on('zoomstart movestart',function(e){ if(ready && !fitting) touched=true; });
+  var fitting=false;
+  var _fit=fit; fit=function(d){ fitting=true; _fit(d); setTimeout(function(){fitting=false;},400); };
+  var lastW=0;
+  function onResize(){
+    var w=map.getContainer().clientWidth; if(w===lastW) return; lastW=w;
+    map.invalidateSize(false); if(!touched) _fit(currentDay);
+  }
+  if(window.ResizeObserver) new ResizeObserver(onResize).observe(map.getContainer());
+  else window.addEventListener('resize',onResize);
 })();
 </script>
 
