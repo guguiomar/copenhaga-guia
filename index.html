@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="color-scheme" content="light"/>
+<link rel="icon" href="data:,"/>
+<title>Copenhaga — guia de família, 5 dias (nov 2026)</title>
+<meta name="description" content="Copenhaga — guia de família, 5 dias (nov 2026)"/>
+<meta property="og:title" content="Copenhaga — guia de família, 5 dias (nov 2026)"/>
+<meta property="og:description" content="Copenhaga — guia de família, 5 dias (nov 2026)"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Archivo+Expanded:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F1E3;
+  --paper:#FDF9EE;
+  --paper2:#FFFEF8;
+  --ink:#121212;
+  --muted:#6B675E;
+  --line:#121212;
+  --red:#E83226;
+  --red-dark:#C2241A;
+  --yellow:#E9A426;
+  --yellow-dark:#9A6B00;
+  --green:#1F7A4D;
+  --green-dark:#145C38;
+  --blue:#234EC2;
+  --blue-dark:#1A3A94;
+  --pink:#E88AA0;
+  --pink-dark:#B94F6B;
+  --water:#B7CFC6;
+  --park:#CBD8B0;
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Archivo",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font-family:inherit;cursor:pointer;min-height:44px}
+.wrap{max-width:1280px;margin:0 auto;padding:28px 20px 36px}
+
+/* HAY top composition */
+.hay-strip{display:flex;gap:0;height:10px;margin:-28px -20px 0;overflow:hidden}
+.hay-strip i{flex:1;display:block}
+.hay-strip i:nth-child(1){background:var(--red)} .hay-strip i:nth-child(2){background:var(--yellow)} .hay-strip i:nth-child(3){background:var(--green)} .hay-strip i:nth-child(4){background:var(--blue)} .hay-strip i:nth-child(5){background:var(--pink)}
+
+header.top{display:flex;justify-content:space-between;gap:32px;align-items:flex-start;padding:28px 0 18px;flex-wrap:wrap}
+.title-block{flex:1;min-width:280px}
+h1{font-size:clamp(56px,9vw,108px);line-height:.88;letter-spacing:-.04em;font-weight:900;margin:0}
+h1 span{color:var(--red)}
+.subtitle{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:14px}
+.date{font-weight:800;font-size:18px;letter-spacing:-.02em}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ink);display:inline-block}
+.people{font-size:14px;color:var(--muted);font-weight:600}
+.intro{max-width:560px;font-size:16px;line-height:1.5;color:#2B2B2B;margin:16px 0 0;font-weight:500}
+.intro strong{font-weight:800}
+
+/* Decorative HAY shapes */
+.shapes{width:210px;flex-shrink:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shape{border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900}
+.shape.circle{width:96px;height:96px;border-radius:50%;background:var(--yellow);font-size:13px;letter-spacing:.08em}
+.shape.pill{width:96px;height:48px;border-radius:999px;background:var(--pink);margin-top:48px;font-size:22px}
+.shape.square{width:96px;height:96px;background:var(--blue);color:white;border-radius:6px;font-size:28px}
+.shape.half{width:96px;height:48px;background:var(--green);border-radius:0 0 96px 96px;margin-top:0;color:white;font-size:11px;letter-spacing:.06em;text-align:center;padding-top:6px}
+@media(max-width:700px){.shapes{display:none}}
+
+/* Filters */
+.filters{position:sticky;top:0;z-index:20;background:var(--bg);padding:12px 0 12px;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filters-label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-right:4px}
+.pill{border:1.5px solid var(--ink);border-radius:999px;padding:10px 18px;font-weight:800;font-size:14px;background:white;color:var(--ink);min-width:96px;box-shadow:2px 2px 0 var(--ink);transition:transform .15s, box-shadow .15s, opacity .2s}
+.pill:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
+.pill[data-day="all"]{background:var(--ink);color:white}
+.pill[data-day="quinta"]{background:var(--red);color:white}
+.pill[data-day="sexta"]{background:var(--yellow);color:var(--ink)}
+.pill[data-day="sabado"]{background:var(--green);color:white}
+.pill[data-day="domingo"]{background:var(--blue);color:white}
+.pill[data-day="segunda"]{background:var(--pink);color:var(--ink)}
+.pill.is-active{outline:3px solid var(--ink);outline-offset:2px}
+.pill:not(.is-active){opacity:.92}
+.hint{margin-left:auto;font-size:13px;color:var(--muted);font-weight:600}
+@media(max-width:800px){.hint{display:none}}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.stat{background:var(--paper2);border:1.5px solid var(--ink);border-radius:14px;padding:14px 16px}
+.stat b{font-size:28px;line-height:1;display:block;letter-spacing:-.03em}
+.stat span{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stat:nth-child(1){background:#FFE9E6}.stat:nth-child(2){background:#FFF3C4}.stat:nth-child(3){background:#DFF0E3}.stat:nth-child(4){background:#E6EBFF}
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}
+
+/* Map */
+.map-card{background:var(--paper);border:1.5px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:6px 6px 0 rgba(18,18,18,.08)}
+.map-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1.5px solid var(--ink);flex-wrap:wrap;gap:10px}
+.map-head strong{font-size:15px;letter-spacing:-.01em}
+.map-head span{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.map-svg{width:100%;height:auto;display:block;background:#FDF9EE}
+.route{transition:opacity .25s}
+.route path{fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.route circle{stroke-width:2;fill:white}
+.route text{font-family:"Archivo",sans-serif;font-weight:800;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+body[data-filter="quinta"] .route:not([data-day="quinta"]),
+body[data-filter="sexta"] .route:not([data-day="sexta"]),
+body[data-filter="sabado"] .route:not([data-day="sabado"]),
+body[data-filter="domingo"] .route:not([data-day="domingo"]),
+body[data-filter="segunda"] .route:not([data-day="segunda"]){opacity:.12}
+.map-legend{display:flex;gap:14px;flex-wrap:wrap;padding:12px 18px;border-top:1px solid #E6DDC6;font-size:12px;font-weight:700}
+.map-legend i{width:22px;height:4px;display:inline-block;vertical-align:middle;margin-right:6px;border-radius:999px}
+
+/* Detail grid */
+.detail-grid{display:grid;grid-template-columns:1.9fr .9fr;gap:12px;margin-top:12px}
+@media(max-width:860px){.detail-grid{grid-template-columns:1fr}}
+.inset-card,.airport-card{border:1.5px solid var(--ink);border-radius:18px;overflow:hidden;background:var(--paper2)}
+.inset-card header,.airport-card header{padding:12px 16px;border-bottom:1.5px solid var(--ink);display:flex;justify-content:space-between;align-items:center}
+.inset-card header b{font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.inset-tags{display:flex;flex-wrap:wrap;gap:6px;padding:14px 16px}
+.tag{font-size:12px;font-weight:700;border:1.2px solid var(--ink);border-radius:999px;padding:6px 10px;background:white}
+.tag.r{border-color:var(--red);color:var(--red-dark)} .tag.b{border-color:var(--blue);color:var(--blue-dark)} .tag.p{border-color:var(--pink-dark);color:var(--pink-dark)} .tag.y{border-color:var(--yellow-dark);color:var(--yellow-dark)}
+.inset-note{padding:0 16px 16px;font-size:13.5px;line-height:1.5;color:#333}
+.airport-card{background:#FDE8EE;display:flex;flex-direction:column}
+.airport-hero{padding:22px 18px 10px;text-align:center}
+.plane{font-size:64px;line-height:1;color:var(--pink-dark)}
+.cph{font-size:52px;font-weight:900;letter-spacing:-.04em;color:var(--pink-dark);line-height:1;margin-top:6px}
+.airport-card ul{list-style:none;margin:8px 0 0;padding:16px 18px 20px;text-align:center}
+.airport-card li{font-weight:700;padding:7px 0;border-top:1px dashed rgba(0,0,0,.18);font-size:14px}
+.airport-card li:first-child{border-top:0;font-size:16px}
+
+/* Days */
+.days-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:28px 0 14px;flex-wrap:wrap}
+.days-head h2{font-size:clamp(28px,4vw,42px);line-height:.95;letter-spacing:-.03em;margin:0;font-weight:900}
+.days-head p{margin:0;color:var(--muted);font-weight:600;font-size:14px;max-width:420px;line-height:1.5}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media(max-width:1100px){.days{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.days{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.days{grid-template-columns:1fr}}
+.day{background:var(--paper2);border:1.5px solid var(--ink);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:opacity .2s, transform .2s, box-shadow .2s}
+.day.is-dim{opacity:.45}
+.day.is-focus{box-shadow:5px 5px 0 var(--ink);transform:translateY(-2px)}
+.day-head{padding:12px 14px;color:white;display:flex;justify-content:space-between;align-items:center;cursor:pointer;min-height:52px;border:0;width:100%;text-align:left}
+.day-head strong{font-size:15px;letter-spacing:-.01em}
+.day-head span{font-size:22px;font-weight:900;opacity:.9}
+.day[data-day="quinta"] .day-head{background:var(--red)} .day[data-day="sexta"] .day-head{background:var(--yellow);color:var(--ink)} .day[data-day="sabado"] .day-head{background:var(--green)} .day[data-day="domingo"] .day-head{background:var(--blue)} .day[data-day="segunda"] .day-head{background:var(--pink);color:var(--ink)}
+.day-body{padding:12px 14px 16px}
+.hood{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:14px 0 7px}
+.hood:first-child{margin-top:0}
+.place{display:flex;gap:8px;align-items:flex-start;padding:5px 0;line-height:1.35}
+.num{flex:0 0 21px;width:21px;height:21px;border-radius:50%;border:1.8px solid;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin-top:1px;background:white}
+.day[data-day="quinta"] .num{border-color:var(--red);color:var(--red-dark)} .day[data-day="sexta"] .num{border-color:var(--yellow);color:var(--yellow-dark)} .day[data-day="sabado"] .num{border-color:var(--green);color:var(--green-dark)} .day[data-day="domingo"] .num{border-color:var(--blue);color:var(--blue-dark)} .day[data-day="segunda"] .num{border-color:var(--pink);color:var(--pink-dark)}
+.place span{font-size:13.5px;font-weight:600}
+.place small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.base-badge{display:inline-flex;background:var(--red);color:white;font-size:10px;font-weight:800;letter-spacing:.06em;padding:3px 7px;border-radius:999px;margin-left:6px;vertical-align:1px;text-transform:uppercase}
+
+/* HAY footer band */
+.hay-band{margin-top:22px;border:1.5px solid var(--ink);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1.2fr .8fr}
+@media(max-width:700px){.hay-band{grid-template-columns:1fr}}
+.hay-band .left{padding:20px;background:var(--ink);color:white}
+.hay-band .left h3{margin:0;font-size:24px;line-height:1;letter-spacing:-.02em}
+.hay-band .left p{margin:10px 0 0;color:#D8D2C2;line-height:1.5;font-size:14px}
+.hay-band .right{display:grid;grid-template-columns:1fr 1fr}
+.hay-band .right div{padding:18px;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:end;min-height:76px}
+.hay-band .right div:nth-child(1){background:var(--red);color:white} .hay-band .right div:nth-child(2){background:var(--yellow)} .hay-band .right div:nth-child(3){background:var(--green);color:white} .hay-band .right div:nth-child(4){background:var(--blue);color:white} .hay-band .right div:nth-child(5){background:var(--pink);grid-column:1 / -1}
+footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);font-weight:600;padding-top:12px;border-top:1px solid #DDD3B8}
+</style>
+</head>
+<body data-filter="all">
+<div class="wrap">
+  <div class="hay-strip" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+  <header class="top">
+    <div class="title-block">
+      <h1>Copen-<br>haga<span>.</span></h1>
+      <div class="subtitle">
+        <span class="date">12–16 nov 2026</span>
+      </div>
+      <p class="intro">Cinco dias, cinco cores. Um mapa para guardar, no espírito <strong>HAY</strong>: formas simples, cor sem medo e tudo no sítio. Base no <strong>Venders</strong>, em Nørreport, e a cidade a pé, de metro e à mesa.</p>
+    </div>
+    <div class="shapes" aria-hidden="true">
+      <div class="shape circle">HAY<br>HOUSE</div>
+      <div class="shape pill">✈ CPH</div>
+      <div class="shape square">12—16</div>
+      <div class="shape half">NOV<br>2026</div>
+    </div>
+  </header>
+
+  <nav class="filters" aria-label="Filtrar por dia">
+    <span class="filters-label">Dias</span>
+    <button class="pill is-active" data-day="all">Todos</button>
+    <button class="pill" data-day="quinta">Quinta</button>
+    <button class="pill" data-day="sexta">Sexta</button>
+    <button class="pill" data-day="sabado">Sábado</button>
+    <button class="pill" data-day="domingo">Domingo</button>
+    <button class="pill" data-day="segunda">Segunda</button>
+    <span class="hint">Toca num dia para isolar o percurso no mapa ↓</span>
+  </nav>
+
+  <div class="stats" aria-label="Resumo">
+    <div class="stat"><b>5</b><span>dias</span></div>
+    <div class="stat"><b>58</b><span>paragens</span></div>
+    <div class="stat"><b>1</b><span>base · Venders</span></div>
+    <div class="stat"><b>CPH</b><span>chegada 12:52 · qui</span></div>
+  </div>
+
+  <!-- MAP -->
+  <section class="map-card" aria-label="Mapa estilizado de Copenhaga">
+    <div class="map-head"><strong>Mapa — percursos por cor</strong><span>Indre By ampliado em baixo · A</span></div>
+    <svg class="map-svg" viewBox="0 0 1000 600" role="img" aria-label="Mapa estilizado com os percursos dos cinco dias em Copenhaga">
+      <!-- water / land -->
+      <rect width="1000" height="600" fill="#B7CFC6"/>
+      <path d="M40 40 L620 30 L660 90 L600 170 L640 260 L580 340 L620 460 L560 560 L120 560 L30 420 L60 200 Z" fill="#FDF9EE"/>
+      <path d="M700 40 L960 40 L960 210 L760 230 L700 160 Z" fill="#B7CFC6"/>
+      <path d="M740 55 L945 55 L945 195 L775 205 L735 140 Z" fill="#FDF9EE"/>
+      <path d="M620 340 L820 340 L860 470 L700 540 L600 460 Z" fill="#FDF9EE"/>
+      <!-- parks -->
+      <ellipse cx="180" cy="180" rx="90" ry="48" fill="#CBD8B0"/>
+      <ellipse cx="420" cy="180" rx="110" ry="42" fill="#CBD8B0"/>
+      <ellipse cx="250" cy="380" rx="80" ry="36" fill="#CBD8B0"/>
+      <rect x="560" y="90" width="70" height="90" rx="12" fill="#CBD8B0"/>
+      <!-- labels -->
+      <g font-family="Archivo,sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#8A968F">
+        <text x="620" y="70">ØSTERBRO</text>
+        <text x="790" y="85">REFSHALEØEN</text>
+        <text x="250" y="135">NØRREBRO</text>
+        <text x="430" y="485">INDRE BY</text>
+        <text x="640" y="335">NYHAVN</text>
+        <text x="130" y="485">VESTERBRO</text>
+        <text x="660" y="505">CHRISTIANSHAVN</text>
+      </g>
+      <!-- inset box A -->
+      <rect x="365" y="275" width="235" height="195" fill="none" stroke="#121212" stroke-width="1.2" stroke-dasharray="6 5"/>
+      <text x="365" y="262" font-family="Archivo" font-weight="900" font-size="14" fill="#121212">A</text>
+      <text x="425" y="295" font-size="18">⌂</text>
+
+      <!-- QUINTA red -->
+      <g class="route" data-day="quinta" stroke="#E83226">
+        <path d="M300 118 C360 200, 400 260, 425 318 C440 360, 455 390, 470 405 C460 425, 435 445, 415 435" stroke="#E83226"/>
+        <g fill="#E83226"><circle cx="425" cy="318" r="11"/><circle cx="450" cy="395" r="11"/><circle cx="470" cy="405" r="11"/><circle cx="415" cy="435" r="11"/><circle cx="300" cy="118" r="11"/></g>
+        <g fill="#121212" font-size="10"><text x="425" y="319">1</text><text x="450" y="396">2</text><text x="470" y="406">3</text><text x="415" y="436">7</text><text x="300" y="119">8</text></g>
+      </g>
+      <!-- SEXTA yellow -->
+      <g class="route" data-day="sexta" stroke="#E9A426">
+        <path d="M410 300 C480 260, 560 220, 660 170 C620 260, 580 330, 560 345 C500 400, 420 440, 380 460 C340 490, 290 515, 265 520" stroke="#E9A426"/>
+        <g fill="#E9A426"><circle cx="480" cy="262" r="11"/><circle cx="620" cy="212" r="11"/><circle cx="660" cy="172" r="11"/><circle cx="560" cy="345" r="11"/><circle cx="580" cy="362" r="11"/><circle cx="380" cy="460" r="11"/><circle cx="265" cy="520" r="11"/></g>
+        <g fill="#121212" font-size="10"><text x="480" y="263">2</text><text x="620" y="213">4</text><text x="660" y="173">5</text><text x="560" y="346">7</text><text x="580" y="363">8</text><text x="380" y="461">9</text><text x="265" y="521">11</text></g>
+      </g>
+      <!-- SABADO green -->
+      <g class="route" data-day="sabado" stroke="#1F7A4D">
+        <path d="M140 130 C135 180, 150 210, 165 238 C185 290, 260 320, 340 332 C390 360, 450 410, 480 442 C380 470, 240 475, 172 462" stroke="#1F7A4D"/>
+        <g fill="#1F7A4D"><circle cx="140" cy="130" r="11"/><circle cx="150" cy="200" r="11"/><circle cx="165" cy="238" r="11"/><circle cx="340" cy="332" r="11"/><circle cx="430" cy="392" r="11"/><circle cx="480" cy="442" r="11"/><circle cx="172" cy="462" r="11"/></g>
+        <g fill="white" font-size="10"><text x="140" y="131">1</text><text x="150" y="201">2</text><text x="165" y="239">6</text><text x="340" y="333">11</text><text x="430" y="393">14</text><text x="480" y="443">15</text><text x="172" y="463">16</text></g>
+      </g>
+      <!-- DOMINGO blue -->
+      <g class="route" data-day="domingo" stroke="#234EC2">
+        <path d="M460 360 C520 340, 700 260, 835 185 C800 300, 730 400, 685 460 C660 485, 640 470, 622 372 C560 380, 500 385, 462 362" stroke="#234EC2"/>
+        <g fill="#234EC2"><circle cx="460" cy="360" r="11"/><circle cx="622" cy="372" r="11"/><circle cx="835" cy="185" r="11"/><circle cx="700" cy="422" r="11"/><circle cx="680" cy="462" r="11"/><circle cx="650" cy="482" r="11"/></g>
+        <g fill="white" font-size="10"><text x="460" y="361">1</text><text x="622" y="373">13</text><text x="835" y="186">8</text><text x="700" y="423">10</text><text x="680" y="463">11</text><text x="650" y="483">12</text></g>
+      </g>
+      <!-- SEGUNDA pink -->
+      <g class="route" data-day="segunda" stroke="#E88AA0">
+        <path d="M430 445 C450 420, 470 405, 485 395 C500 410, 490 435, 460 448 C445 452, 432 450, 430 445" stroke="#E88AA0"/>
+        <g fill="#E88AA0"><circle cx="470" cy="405" r="11"/><circle cx="485" cy="395" r="10"/><circle cx="460" cy="448" r="10"/></g>
+        <g fill="#121212" font-size="10"><text x="470" y="406">1</text><text x="485" y="396">2</text><text x="460" y="449">3</text></g>
+      </g>
+    </svg>
+    <div class="map-legend">
+      <span><i style="background:var(--red)"></i>Quinta</span>
+      <span><i style="background:var(--yellow)"></i>Sexta</span>
+      <span><i style="background:var(--green)"></i>Sábado</span>
+      <span><i style="background:var(--blue)"></i>Domingo</span>
+      <span><i style="background:var(--pink)"></i>Segunda</span>
+      <span style="margin-left:auto;color:var(--muted)">⌂ Venders · base</span>
+    </div>
+  </section>
+
+  <div class="detail-grid">
+    <section class="inset-card">
+      <header><b>A · Indre By — detalhe</b><span style="font-size:12px;font-weight:700;color:var(--muted)">ONDE TUDO SE CRUZA</span></header>
+      <div class="inset-tags">
+        <span class="tag r">Venders · base</span><span class="tag r">Hooked</span><span class="tag r">Hay House</span><span class="tag r">Andersen &amp; Maillard</span>
+        <span class="tag b">Naked</span><span class="tag b">Rezet</span><span class="tag b">Bird</span><span class="tag b">Barr</span>
+        <span class="tag p">ILLUM</span><span class="tag p">LEGO</span><span class="tag p">Strøget</span><span class="tag y">Gasoline Grill</span>
+      </div>
+      <p class="inset-note">O centro foi o ponto de passagem de quase todos os dias: Hay House na quinta e outra vez na segunda, o Strøget das prendas, e o eixo Naked / Rezet / Barr no domingo. É a zona A assinalada a tracejado no mapa.</p>
+    </section>
+    <section class="airport-card" aria-label="Aeroporto">
+      <div class="airport-hero"><div class="plane">✈</div><div class="cph">CPH</div><div style="font-weight:800;margin-top:6px">Aeroporto</div></div>
+      <ul><li>Aeroporto CPH</li><li>Gasoline Grill</li><li>Joe &amp; the Juice</li></ul>
+    </section>
+  </div>
+
+  <div class="days-head">
+    <h2>O roteiro,<br>dia a dia.</h2>
+    <p>Listas completas tal como foram vividas. Os números correspondem aos pontos no mapa, a começar de novo em cada dia.</p>
+  </div>
+
+  <section class="days" id="days">
+    <!-- QUINTA -->
+    <article class="day" data-day="quinta">
+      <button class="day-head" data-filter-btn="quinta"><strong>Quinta 12</strong><span>→</span></button>
+      <div class="day-body">
+        <div class="hood">Nørreport</div>
+        <div class="place"><span class="num">1</span><span>Venders <span class="base-badge">base</span><small>Nørre Voldgade 11 · apartamento</small></span></div>
+        <div class="hood">Indre By</div>
+        <div class="place"><span class="num">2</span><span>Hooked<small>Klosterstræde 20 · almoço</small></span></div>
+        <div class="place"><span class="num">3</span><span>Hay House</span></div>
+        <div class="place"><span class="num">4</span><span>Uniqlo</span></div>
+        <div class="place"><span class="num">5</span><span>Strøget</span></div>
+        <div class="place"><span class="num">6</span><span>Andersen &amp; Maillard</span></div>
+        <div class="place"><span class="num">7</span><span>Mercado de Natal<small>Nytorv e Gammeltorv</small></span></div>
+        <div class="hood">Nørrebro · Lagos</div>
+        <div class="place"><span class="num">8</span><span>OMAR<small>Refsnæsgade 32 · jantar</small></span></div>
+      </div>
+    </article>
+
+    <!-- SEXTA -->
+    <article class="day" data-day="sexta">
+      <button class="day-head" data-filter-btn="sexta"><strong>Sexta 13</strong><span>→</span></button>
+      <div class="day-body">
+        <div class="hood">Indre By · Norte</div>
+        <div class="place"><span class="num">1</span><span>Lille Petra</span></div>
+        <div class="place"><span class="num">2</span><span>Atelier September <small>(por fora)</small></span></div>
+        <div class="place"><span class="num">3</span><span>Rosenborg <small>(por fora)</small></span></div>
+        <div class="hood">Frederiksstaden · Østerbro</div>
+        <div class="place"><span class="num">4</span><span>Designmuseum<small>Bredgade</small></span></div>
+        <div class="place"><span class="num">5</span><span>Kastellet</span></div>
+        <div class="place"><span class="num">6</span><span>Pequena Sereia</span></div>
+        <div class="place"><span class="num">7</span><span>Gasoline Grill<small>Landgreven 10 · almoço</small></span></div>
+        <div class="hood">Nyhavn</div>
+        <div class="place"><span class="num">8</span><span>Nyhavn</span></div>
+        <div class="hood">Vesterbro</div>
+        <div class="place"><span class="num">9</span><span>Tivoli <small>(por fora)</small></span></div>
+        <div class="place"><span class="num">10</span><span>WarPigs<small>uma cerveja</small></span></div>
+        <div class="place"><span class="num">11</span><span>Mother<small>Kødbyen · jantar</small></span></div>
+      </div>
+    </article>
+
+    <!-- SABADO -->
+    <article class="day" data-day="sabado">
+      <button class="day-head" data-filter-btn="sabado"><strong>Sábado 14</strong><span>→</span></button>
+      <div class="day-body">
+        <div class="hood">Nørrebro</div>
+        <div class="place"><span class="num">1</span><span>Superkilen</span></div>
+        <div class="hood">Jægersborggade</div>
+        <div class="place"><span class="num">2</span><span>Coffee Collective<small>ou Rondo · pequeno-almoço</small></span></div>
+        <div class="place"><span class="num">3</span><span>Vanishing Point</span></div>
+        <div class="place"><span class="num">4</span><span>My Favourite Things</span></div>
+        <div class="place"><span class="num">5</span><span>Mochi Copenhagen</span></div>
+        <div class="place"><span class="num">6</span><span>Grød<small>Jægersborggade 50 · almoço</small></span></div>
+        <div class="place"><span class="num">7</span><span>BRÆT</span></div>
+        <div class="place"><span class="num">8</span><span>Cemitério Assistens</span></div>
+        <div class="place"><span class="num">9</span><span>Friheden <small>(por fora)</small></span></div>
+        <div class="place"><span class="num">10</span><span>Ravnsborggade<small>antiguidades</small></span></div>
+        <div class="place"><span class="num">11</span><span>Elmegade</span></div>
+        <div class="place"><span class="num">12</span><span>Blågårdsgade</span></div>
+        <div class="place"><span class="num">13</span><span>Perfectly Worn Vintage</span></div>
+        <div class="place"><span class="num">14</span><span>Route 66<small>vinil</small></span></div>
+        <div class="hood">Indre By</div>
+        <div class="place"><span class="num">15</span><span>Brand Space Studio</span></div>
+        <div class="hood">Nørrebro · Rantzausgade</div>
+        <div class="place"><span class="num">16</span><span>Cleo<small>Rantzausgade 58B · jantar 20:30</small></span></div>
+      </div>
+    </article>
+
+    <!-- DOMINGO -->
+    <article class="day" data-day="domingo">
+      <button class="day-head" data-filter-btn="domingo"><strong>Domingo 15</strong><span>→</span></button>
+      <div class="day-body">
+        <div class="hood">Indre By</div>
+        <div class="place"><span class="num">1</span><span>Naked</span></div>
+        <div class="place"><span class="num">2</span><span>Rezet</span></div>
+        <div class="place"><span class="num">3</span><span>Hart Bageri</span></div>
+        <div class="place"><span class="num">4</span><span>Salomon</span></div>
+        <div class="place"><span class="num">5</span><span>Bird: Downtown<small>Palægade 8</small></span></div>
+        <div class="place"><span class="num">6</span><span>Notre Dame</span></div>
+        <div class="place"><span class="num">7</span><span>Studio Arhoj <small>(por fora)</small></span></div>
+        <div class="hood">Refshaleøen</div>
+        <div class="place"><span class="num">8</span><span>Lille Bakery</span></div>
+        <div class="place"><span class="num">9</span><span>Noma Projects</span></div>
+        <div class="hood">Christianshavn · Holmen</div>
+        <div class="place"><span class="num">10</span><span>GANNI Postmodern</span></div>
+        <div class="place"><span class="num">11</span><span>Christiania</span></div>
+        <div class="place"><span class="num">12</span><span>Ferm Living</span></div>
+        <div class="place"><span class="num">13</span><span>Barr<small>jantar 20:00 · metro às 19:10</small></span></div>
+      </div>
+    </article>
+
+    <!-- SEGUNDA -->
+    <article class="day" data-day="segunda">
+      <button class="day-head" data-filter-btn="segunda"><strong>Segunda 16</strong><span>→</span></button>
+      <div class="day-body">
+        <div class="hood">Indre By · Strøget e Købmagergade</div>
+        <div class="place"><span class="num">1</span><span>Illum<small>rota das prendas</small></span></div>
+        <div class="place"><span class="num">2</span><span>Loja LEGO</span></div>
+        <div class="place"><span class="num">3</span><span>Hay House<small>outra vez</small></span></div>
+        <div class="place"><span class="num">4</span><span>Collectors Cage</span></div>
+        <div class="place"><span class="num">5</span><span>Faraos Cigarer</span></div>
+        <div class="place"><span class="num">6</span><span>Design market<small>outlet pop-up de design</small></span></div>
+        <div class="place"><span class="num">7</span><span>Joe &amp; the Juice</span></div>
+        <div class="place"><span class="num">8</span><span>New Balance</span></div>
+        <div class="place"><span class="num">9</span><span>DØP</span></div>
+        <div class="hood">Aeroporto</div>
+        <div class="place"><span class="num">10</span><span>Aeroporto CPH<small>Gasoline Grill · Joe &amp; the Juice · partida</small></span></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="hay-band">
+    <div class="left">
+      <h3>Cor, forma,<br>função.</h3>
+      <p>É a receita HAY aplicada a uma viagem: cada dia ganha uma cor, cada cor ganha um percurso, e o mapa deixa de ser só um mapa. Passa a ser um objeto para guardar.</p>
+    </div>
+    <div class="right" aria-hidden="true">
+      <div>Quinta<br>● Vermelho</div><div>Sexta<br>● Amarelo</div><div>Sábado<br>● Verde</div><div>Domingo<br>● Azul</div><div>Segunda<br>● Rosa</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Dados do mapa © OpenStreetMap · Mapa estilizado, não à escala</span>
+    <span>Copenhaga · 12–16 nov 2026</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var body=document.body;
+  var pills=document.querySelectorAll('.pill');
+  var days=document.querySelectorAll('.day');
+  function setFilter(day){
+    body.setAttribute('data-filter', day);
+    pills.forEach(function(p){ p.classList.toggle('is-active', p.getAttribute('data-day')===day); });
+    days.forEach(function(d){
+      var match = day==='all' || d.getAttribute('data-day')===day;
+      d.classList.toggle('is-focus', day!=='all' && match);
+      d.classList.toggle('is-dim', day!=='all' && !match);
+    });
+    if(day!=='all'){
+      var el=document.querySelector('.day[data-day="'+day+'"]');
+      if(el && window.innerWidth<760){ /* keep map visible on mobile, don't force scroll */ }
+    }
+  }
+  pills.forEach(function(p){ p.addEventListener('click', function(){ setFilter(p.getAttribute('data-day')); document.querySelector('.map-card').scrollIntoView({behavior:'smooth', block:'nearest'}); }); });
+  document.querySelectorAll('[data-filter-btn]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var day=btn.getAttribute('data-filter-btn');
+      var current=body.getAttribute('data-filter');
+      setFilter(current===day ? 'all' : day);
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+})();
+</script>
+</body>
+</html>
