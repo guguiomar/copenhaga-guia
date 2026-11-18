@@ -145,6 +145,43 @@ h1 span{color:var(--red)}
 .day[data-day="quinta"] .num{border-color:var(--red);color:var(--red-dark)} .day[data-day="sexta"] .num{border-color:var(--yellow);color:var(--yellow-dark)} .day[data-day="sabado"] .num{border-color:var(--green);color:var(--green-dark)} .day[data-day="domingo"] .num{border-color:var(--blue);color:var(--blue-dark)} .day[data-day="segunda"] .num{border-color:var(--pink);color:var(--pink-dark)}
 .base-badge{display:inline-flex;background:var(--red);color:white;font-size:10px;font-weight:800;letter-spacing:.06em;padding:3px 7px;border-radius:999px;margin-left:6px;vertical-align:1px;text-transform:uppercase}
 
+/* Favoritos */
+.place .fav,.fav{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:var(--yellow);color:var(--ink);border:1.3px solid var(--ink);font-size:10px;line-height:1;vertical-align:1px;margin-left:2px;font-weight:900;flex:0 0 auto}
+.mk{position:relative}
+.mk-star{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:var(--yellow);color:var(--ink);border:1.3px solid var(--ink);font-size:9px;line-height:1;display:flex;align-items:center;justify-content:center;font-weight:900}
+.is-all .mk-star{top:-6px;right:-7px;width:13px;height:13px;font-size:8px}
+.chip.chip-fav i{background:var(--yellow);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:9px;color:var(--ink)}
+.map-legend .fav-note{display:inline-flex;align-items:center;gap:6px}
+.map-legend .fav-note .fav{margin:0}
+.sheet-fav{display:inline-flex;align-items:center;gap:6px;margin:0 0 8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.sheet-fav[hidden]{display:none}
+.sheet-fav .fav{margin:0}
+.favs{margin-top:28px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:0 0 14px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(28px,4vw,42px);line-height:.95;letter-spacing:-.03em;margin:0;font-weight:900}
+.sec-head p{margin:0;color:var(--muted);font-weight:600;font-size:14px;max-width:420px;line-height:1.5;display:flex;align-items:center;gap:6px}
+.favs-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media(max-width:1100px){.favs-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.favs-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.favs-grid{grid-template-columns:1fr}}
+.fav-day{background:var(--paper2);border:1.5px solid var(--ink);border-radius:16px;overflow:hidden}
+.fav-day header{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1.5px solid var(--ink);font-weight:800;font-size:14px}
+.fav-day header i{width:12px;height:12px;border-radius:50%;border:1.3px solid var(--ink);display:inline-block}
+.fav-list{display:flex;flex-wrap:wrap;gap:6px;padding:12px 12px 14px}
+.fav-tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border:1.3px solid var(--ink);border-radius:999px;padding:6px 11px 6px 7px;background:white;color:var(--ink);font-family:inherit;min-height:36px;cursor:pointer}
+.fav-tag .fav{margin:0}
+.fav-tag:hover,.fav-tag:focus-visible{background:var(--ink);color:white;outline:none}
+/* Dicas */
+.dicas{margin-top:28px;background:var(--paper2);border:1.5px solid var(--ink);border-radius:20px;padding:20px 20px 8px}
+.dicas .sec-head{margin-bottom:6px}
+.dicas ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+@media(max-width:760px){.dicas ol{grid-template-columns:1fr}}
+.dicas li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #E6DDC6;font-size:14.5px;line-height:1.45;font-weight:500;color:#222}
+.dicas li b.n{flex:0 0 26px;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;margin-top:-2px}
+.dicas li:nth-child(5n+1) b.n{background:var(--red);color:white}.dicas li:nth-child(5n+2) b.n{background:var(--yellow)}.dicas li:nth-child(5n+3) b.n{background:var(--green);color:white}.dicas li:nth-child(5n+4) b.n{background:var(--blue);color:white}.dicas li:nth-child(5n+5) b.n{background:var(--pink)}
+.dicas .src{margin:10px 0 12px;font-size:11.5px;color:var(--muted);font-weight:600}
+.dicas .src a{color:var(--muted)}
+
 /* HAY footer band */
 .hay-band{margin-top:22px;border:1.5px solid var(--ink);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1.2fr .8fr}
 @media(max-width:700px){.hay-band{grid-template-columns:1fr}}
@@ -239,6 +276,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <button type="button" class="chip" data-map-day="sabado"><i style="background:var(--green)"></i>Sábado</button>
       <button type="button" class="chip" data-map-day="domingo"><i style="background:var(--blue)"></i>Domingo</button>
       <button type="button" class="chip" data-map-day="segunda"><i style="background:var(--pink)"></i>Segunda</button>
+      <button type="button" class="chip chip-fav" data-map-day="fav"><i>★</i>Favoritos</button>
     </div>
     <div class="map-wrap">
       <div id="cph-map" role="region" aria-label="Mapa interativo de Copenhaga"></div>
@@ -250,7 +288,22 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <span><i style="background:var(--green)"></i>Sábado</span>
       <span><i style="background:var(--blue)"></i>Domingo</span>
       <span><i style="background:var(--pink)"></i>Segunda</span>
+      <span class="fav-note"><span class="fav" title="Favorito da família" aria-label="favorito da família">★</span>favorito da família</span>
       <span class="home"><b>⌂</b>Venders · base</span>
+    </div>
+  </section>
+
+  <section class="favs" id="favoritos" aria-label="Os nossos favoritos">
+    <div class="sec-head">
+      <h2>Os nossos<br>favoritos.</h2>
+      <p><span class="fav" title="Favorito da família" aria-label="favorito da família">★</span> favorito da família · toca num sítio para ver imagens</p>
+    </div>
+    <div class="favs-grid">
+      <div class="fav-day" data-day="quinta"><header><i style="background:var(--red)"></i>Quinta 12</header><div class="fav-list"><button type="button" class="fav-tag" data-place="hooked"><span class="fav" aria-hidden="true">★</span>Hooked</button><button type="button" class="fav-tag" data-place="hay-house"><span class="fav" aria-hidden="true">★</span>Hay House</button><button type="button" class="fav-tag" data-place="andersen-maillard"><span class="fav" aria-hidden="true">★</span>Andersen &amp; Maillard</button></div></div>
+      <div class="fav-day" data-day="sexta"><header><i style="background:var(--yellow)"></i>Sexta 13</header><div class="fav-list"><button type="button" class="fav-tag" data-place="lille-petra"><span class="fav" aria-hidden="true">★</span>Lille Petra</button><button type="button" class="fav-tag" data-place="designmuseum"><span class="fav" aria-hidden="true">★</span>Designmuseum</button><button type="button" class="fav-tag" data-place="kastellet"><span class="fav" aria-hidden="true">★</span>Kastellet</button><button type="button" class="fav-tag" data-place="gasoline-grill"><span class="fav" aria-hidden="true">★</span>Gasoline Grill</button><button type="button" class="fav-tag" data-place="nyhavn"><span class="fav" aria-hidden="true">★</span>Nyhavn</button><button type="button" class="fav-tag" data-place="warpigs"><span class="fav" aria-hidden="true">★</span>WarPigs</button><button type="button" class="fav-tag" data-place="mother"><span class="fav" aria-hidden="true">★</span>Mother</button></div></div>
+      <div class="fav-day" data-day="sabado"><header><i style="background:var(--green)"></i>Sábado 14</header><div class="fav-list"><button type="button" class="fav-tag" data-place="coffee-collective"><span class="fav" aria-hidden="true">★</span>Coffee Collective</button><button type="button" class="fav-tag" data-place="braet"><span class="fav" aria-hidden="true">★</span>BRÆT</button><button type="button" class="fav-tag" data-place="assistens"><span class="fav" aria-hidden="true">★</span>Cemitério Assistens</button><button type="button" class="fav-tag" data-place="perfectly-worn-vintage"><span class="fav" aria-hidden="true">★</span>Perfectly Worn Vintage</button><button type="button" class="fav-tag" data-place="route-66"><span class="fav" aria-hidden="true">★</span>Route 66</button><button type="button" class="fav-tag" data-place="brand-space-studio"><span class="fav" aria-hidden="true">★</span>Brand Space Studio</button><button type="button" class="fav-tag" data-place="cleo"><span class="fav" aria-hidden="true">★</span>Cleo</button></div></div>
+      <div class="fav-day" data-day="domingo"><header><i style="background:var(--blue)"></i>Domingo 15</header><div class="fav-list"><button type="button" class="fav-tag" data-place="naked"><span class="fav" aria-hidden="true">★</span>Naked</button><button type="button" class="fav-tag" data-place="rezet"><span class="fav" aria-hidden="true">★</span>Rezet</button><button type="button" class="fav-tag" data-place="hart-bageri"><span class="fav" aria-hidden="true">★</span>Hart Bageri</button><button type="button" class="fav-tag" data-place="bird-downtown"><span class="fav" aria-hidden="true">★</span>Bird: Downtown</button><button type="button" class="fav-tag" data-place="lille-bakery"><span class="fav" aria-hidden="true">★</span>Lille Bakery</button><button type="button" class="fav-tag" data-place="noma-projects"><span class="fav" aria-hidden="true">★</span>Noma Projects</button><button type="button" class="fav-tag" data-place="ferm-living"><span class="fav" aria-hidden="true">★</span>Ferm Living</button><button type="button" class="fav-tag" data-place="barr"><span class="fav" aria-hidden="true">★</span>Barr</button></div></div>
+      <div class="fav-day" data-day="segunda"><header><i style="background:var(--pink)"></i>Segunda 16</header><div class="fav-list"><button type="button" class="fav-tag" data-place="illum"><span class="fav" aria-hidden="true">★</span>Illum</button><button type="button" class="fav-tag" data-place="loja-lego"><span class="fav" aria-hidden="true">★</span>Loja LEGO</button><button type="button" class="fav-tag" data-place="hay-house"><span class="fav" aria-hidden="true">★</span>Hay House</button><button type="button" class="fav-tag" data-place="design-market"><span class="fav" aria-hidden="true">★</span>Design market</button></div></div>
     </div>
   </section>
 
@@ -267,11 +320,11 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
         <div class="hood">Nørreport</div>
         <button type="button" class="place" data-place="venders"><span class="num">1</span><span>Venders <span class="base-badge">base</span><small>Nørre Voldgade 11 · apartamento</small></span></button>
         <div class="hood">Indre By</div>
-        <button type="button" class="place" data-place="hooked"><span class="num">2</span><span>Hooked<small>Klosterstræde 20 · almoço</small></span></button>
-        <button type="button" class="place" data-place="hay-house"><span class="num">3</span><span>Hay House</span></button>
+        <button type="button" class="place" data-place="hooked"><span class="num">2</span><span>Hooked <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>Klosterstræde 20 · almoço</small></span></button>
+        <button type="button" class="place" data-place="hay-house"><span class="num">3</span><span>Hay House <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
         <button type="button" class="place" data-place="uniqlo"><span class="num">4</span><span>Uniqlo</span></button>
         <button type="button" class="place" data-place="stroget"><span class="num">5</span><span>Strøget</span></button>
-        <button type="button" class="place" data-place="andersen-maillard"><span class="num">6</span><span>Andersen &amp; Maillard</span></button>
+        <button type="button" class="place" data-place="andersen-maillard"><span class="num">6</span><span>Andersen &amp; Maillard <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
         <button type="button" class="place" data-place="mercado-natal"><span class="num">7</span><span>Mercado de Natal<small>Nytorv e Gammeltorv</small></span></button>
         <div class="hood">Nørrebro · Lagos</div>
         <button type="button" class="place" data-place="omar"><span class="num">8</span><span>OMAR<small>Refsnæsgade 32 · jantar</small></span></button>
@@ -283,20 +336,20 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <button class="day-head" data-filter-btn="sexta"><strong>Sexta 13</strong><span>→</span></button>
       <div class="day-body">
         <div class="hood">Indre By · Norte</div>
-        <button type="button" class="place" data-place="lille-petra"><span class="num">1</span><span>Lille Petra</span></button>
+        <button type="button" class="place" data-place="lille-petra"><span class="num">1</span><span>Lille Petra <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
         <button type="button" class="place" data-place="atelier-september"><span class="num">2</span><span>Atelier September <small>(por fora)</small></span></button>
         <button type="button" class="place" data-place="rosenborg"><span class="num">3</span><span>Rosenborg <small>(por fora)</small></span></button>
         <div class="hood">Frederiksstaden · Østerbro</div>
-        <button type="button" class="place" data-place="designmuseum"><span class="num">4</span><span>Designmuseum<small>Bredgade</small></span></button>
-        <button type="button" class="place" data-place="kastellet"><span class="num">5</span><span>Kastellet</span></button>
+        <button type="button" class="place" data-place="designmuseum"><span class="num">4</span><span>Designmuseum <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>Bredgade</small></span></button>
+        <button type="button" class="place" data-place="kastellet"><span class="num">5</span><span>Kastellet <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
         <button type="button" class="place" data-place="pequena-sereia"><span class="num">6</span><span>Pequena Sereia</span></button>
-        <button type="button" class="place" data-place="gasoline-grill"><span class="num">7</span><span>Gasoline Grill<small>Landgreven 10 · almoço</small></span></button>
+        <button type="button" class="place" data-place="gasoline-grill"><span class="num">7</span><span>Gasoline Grill <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>Landgreven 10 · almoço</small></span></button>
         <div class="hood">Nyhavn</div>
-        <button type="button" class="place" data-place="nyhavn"><span class="num">8</span><span>Nyhavn</span></button>
+        <button type="button" class="place" data-place="nyhavn"><span class="num">8</span><span>Nyhavn <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
         <div class="hood">Vesterbro</div>
         <button type="button" class="place" data-place="tivoli"><span class="num">9</span><span>Tivoli <small>(por fora)</small></span></button>
-        <button type="button" class="place" data-place="warpigs"><span class="num">10</span><span>WarPigs<small>uma cerveja</small></span></button>
-        <button type="button" class="place" data-place="mother"><span class="num">11</span><span>Mother<small>Kødbyen · jantar</small></span></button>
+        <button type="button" class="place" data-place="warpigs"><span class="num">10</span><span>WarPigs <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>uma cerveja</small></span></button>
+        <button type="button" class="place" data-place="mother"><span class="num">11</span><span>Mother <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>Kødbyen · jantar</small></span></button>
       </div>
     </article>
 
@@ -307,23 +360,23 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
         <div class="hood">Nørrebro</div>
         <button type="button" class="place" data-place="superkilen"><span class="num">1</span><span>Superkilen</span></button>
         <div class="hood">Jægersborggade</div>
-        <button type="button" class="place" data-place="coffee-collective"><span class="num">2</span><span>Coffee Collective<small>ou Rondo · pequeno-almoço</small></span></button>
+        <button type="button" class="place" data-place="coffee-collective"><span class="num">2</span><span>Coffee Collective <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>ou Rondo · pequeno-almoço</small></span></button>
         <button type="button" class="place" data-place="vanishing-point"><span class="num">3</span><span>Vanishing Point</span></button>
         <button type="button" class="place" data-place="my-favourite-things"><span class="num">4</span><span>My Favourite Things</span></button>
         <button type="button" class="place" data-place="mochi-copenhagen"><span class="num">5</span><span>Mochi Copenhagen</span></button>
         <button type="button" class="place" data-place="grod"><span class="num">6</span><span>Grød<small>Jægersborggade 50 · almoço</small></span></button>
-        <button type="button" class="place" data-place="braet"><span class="num">7</span><span>BRÆT</span></button>
-        <button type="button" class="place" data-place="assistens"><span class="num">8</span><span>Cemitério Assistens</span></button>
+        <button type="button" class="place" data-place="braet"><span class="num">7</span><span>BRÆT <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
+        <button type="button" class="place" data-place="assistens"><span class="num">8</span><span>Cemitério Assistens <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
         <button type="button" class="place" data-place="friheden"><span class="num">9</span><span>Friheden <small>(por fora)</small></span></button>
         <button type="button" class="place" data-place="ravnsborggade"><span class="num">10</span><span>Ravnsborggade<small>antiguidades</small></span></button>
         <button type="button" class="place" data-place="elmegade"><span class="num">11</span><span>Elmegade</span></button>
         <button type="button" class="place" data-place="blagaardsgade"><span class="num">12</span><span>Blågårdsgade</span></button>
-        <button type="button" class="place" data-place="perfectly-worn-vintage"><span class="num">13</span><span>Perfectly Worn Vintage</span></button>
-        <button type="button" class="place" data-place="route-66"><span class="num">14</span><span>Route 66<small>vinil</small></span></button>
+        <button type="button" class="place" data-place="perfectly-worn-vintage"><span class="num">13</span><span>Perfectly Worn Vintage <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
+        <button type="button" class="place" data-place="route-66"><span class="num">14</span><span>Route 66 <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>vinil</small></span></button>
         <div class="hood">Indre By</div>
-        <button type="button" class="place" data-place="brand-space-studio"><span class="num">15</span><span>Brand Space Studio</span></button>
+        <button type="button" class="place" data-place="brand-space-studio"><span class="num">15</span><span>Brand Space Studio <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
         <div class="hood">Nørrebro · Rantzausgade</div>
-        <button type="button" class="place" data-place="cleo"><span class="num">16</span><span>Cleo<small>Rantzausgade 58B · jantar 20:30</small></span></button>
+        <button type="button" class="place" data-place="cleo"><span class="num">16</span><span>Cleo <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>Rantzausgade 58B · jantar 20:30</small></span></button>
       </div>
     </article>
 
@@ -332,21 +385,21 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <button class="day-head" data-filter-btn="domingo"><strong>Domingo 15</strong><span>→</span></button>
       <div class="day-body">
         <div class="hood">Indre By</div>
-        <button type="button" class="place" data-place="naked"><span class="num">1</span><span>Naked</span></button>
-        <button type="button" class="place" data-place="rezet"><span class="num">2</span><span>Rezet</span></button>
-        <button type="button" class="place" data-place="hart-bageri"><span class="num">3</span><span>Hart Bageri</span></button>
+        <button type="button" class="place" data-place="naked"><span class="num">1</span><span>Naked <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
+        <button type="button" class="place" data-place="rezet"><span class="num">2</span><span>Rezet <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
+        <button type="button" class="place" data-place="hart-bageri"><span class="num">3</span><span>Hart Bageri <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
         <button type="button" class="place" data-place="salomon"><span class="num">4</span><span>Salomon</span></button>
-        <button type="button" class="place" data-place="bird-downtown"><span class="num">5</span><span>Bird: Downtown<small>Palægade 8</small></span></button>
+        <button type="button" class="place" data-place="bird-downtown"><span class="num">5</span><span>Bird: Downtown <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>Palægade 8</small></span></button>
         <button type="button" class="place" data-place="notre-dame"><span class="num">6</span><span>Notre Dame</span></button>
         <button type="button" class="place" data-place="studio-arhoj"><span class="num">7</span><span>Studio Arhoj <small>(por fora)</small></span></button>
         <div class="hood">Refshaleøen</div>
-        <button type="button" class="place" data-place="lille-bakery"><span class="num">8</span><span>Lille Bakery</span></button>
-        <button type="button" class="place" data-place="noma-projects"><span class="num">9</span><span>Noma Projects</span></button>
+        <button type="button" class="place" data-place="lille-bakery"><span class="num">8</span><span>Lille Bakery <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
+        <button type="button" class="place" data-place="noma-projects"><span class="num">9</span><span>Noma Projects <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
         <div class="hood">Christianshavn · Holmen</div>
         <button type="button" class="place" data-place="ganni-postmodern"><span class="num">10</span><span>GANNI Postmodern</span></button>
         <button type="button" class="place" data-place="christiania"><span class="num">11</span><span>Christiania</span></button>
-        <button type="button" class="place" data-place="ferm-living"><span class="num">12</span><span>Ferm Living</span></button>
-        <button type="button" class="place" data-place="barr"><span class="num">13</span><span>Barr<small>jantar 20:00 · metro às 19:10</small></span></button>
+        <button type="button" class="place" data-place="ferm-living"><span class="num">12</span><span>Ferm Living <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
+        <button type="button" class="place" data-place="barr"><span class="num">13</span><span>Barr <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>jantar 20:00 · metro às 19:10</small></span></button>
       </div>
     </article>
 
@@ -355,12 +408,12 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       <button class="day-head" data-filter-btn="segunda"><strong>Segunda 16</strong><span>→</span></button>
       <div class="day-body">
         <div class="hood">Indre By · Strøget e Købmagergade</div>
-        <button type="button" class="place" data-place="illum"><span class="num">1</span><span>Illum<small>rota das prendas</small></span></button>
-        <button type="button" class="place" data-place="loja-lego"><span class="num">2</span><span>Loja LEGO</span></button>
-        <button type="button" class="place" data-place="hay-house"><span class="num">3</span><span>Hay House<small>outra vez</small></span></button>
+        <button type="button" class="place" data-place="illum"><span class="num">1</span><span>Illum <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>rota das prendas</small></span></button>
+        <button type="button" class="place" data-place="loja-lego"><span class="num">2</span><span>Loja LEGO <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span></span></button>
+        <button type="button" class="place" data-place="hay-house"><span class="num">3</span><span>Hay House <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>outra vez</small></span></button>
         <button type="button" class="place" data-place="collectors-cage"><span class="num">4</span><span>Collectors Cage</span></button>
         <button type="button" class="place" data-place="faraos-cigarer"><span class="num">5</span><span>Faraos Cigarer</span></button>
-        <button type="button" class="place" data-place="design-market"><span class="num">6</span><span>Design market<small>outlet pop-up de design</small></span></button>
+        <button type="button" class="place" data-place="design-market"><span class="num">6</span><span>Design market <span class="fav" title="Favorito da família" aria-label="favorito da família">★</span><small>outlet pop-up de design</small></span></button>
         <button type="button" class="place" data-place="joe-and-the-juice"><span class="num">7</span><span>Joe &amp; the Juice</span></button>
         <button type="button" class="place" data-place="new-balance"><span class="num">8</span><span>New Balance</span></button>
         <button type="button" class="place" data-place="dop"><span class="num">9</span><span>DØP</span></button>
@@ -368,6 +421,21 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
         <button type="button" class="place" data-place="aeroporto-cph"><span class="num">10</span><span>Aeroporto CPH<small>Gasoline Grill · Joe &amp; the Juice · partida</small></span></button>
       </div>
     </article>
+  </section>
+
+  <section class="dicas" id="dicas" aria-label="Dicas">
+    <div class="sec-head"><h2>Dicas.</h2></div>
+    <ol>
+      <li><b class="n">1</b><span>Carrinho de bebé com alcofa anda bem pela cidade: todas as estações de metro têm elevador e o carrinho viaja sem pagar.</span></li>
+      <li><b class="n">2</b><span>Reservar os jantares com antecedência, para as 19:30–20:00; há sítios que reservam pelo Tock e outros que pedem cartão como garantia de comparência.</span></li>
+      <li><b class="n">3</b><span>Metro M2: de Nørreport ao aeroporto em cerca de 15 minutos, com partidas a cada poucos minutos durante o dia.</span></li>
+      <li><b class="n">4</b><span>No aeroporto, depois da segurança, há Gasoline Grill (entre as portas B e C) e Joe &amp; the Juice; convém confirmar o horário antes.</span></li>
+      <li><b class="n">5</b><span>O cartão, com ou sem contacto, é aceite em quase todo o lado; raramente é preciso dinheiro.</span></li>
+      <li><b class="n">6</b><span>Sábado em Nørrebro: Jægersborggade e as ruas à volta concentram lojas independentes, com o Coffee Collective para um espresso rápido.</span></li>
+      <li><b class="n">7</b><span>Illum: prendas e lembranças em vários pisos, e restaurantes e cafés no rooftop do 4.º piso, com vista sobre a cidade.</span></li>
+      <li><b class="n">8</b><span>Loja LEGO (Vimmelskaftet 37): tem Minifigure Factory para personalizar minifiguras, com custo.</span></li>
+    </ol>
+    <p class="src">Fontes: <a href="https://m.dk/en/travel-with-the-metro/contact-and-customer-service/bikes-scooters-and-prams/" target="_blank" rel="noopener">Metroen</a> · <a href="https://www.cph.dk/en/parkering-transport/bus-train-metro-taxi/metro" target="_blank" rel="noopener">CPH</a> · <a href="https://www.gasolinegrill.com/locations/cph-airport" target="_blank" rel="noopener">Gasoline Grill</a> · <a href="https://www.visitcopenhagen.com/copenhagen/planning/inspiration/copenhagen-budget" target="_blank" rel="noopener">VisitCopenhagen</a> · <a href="https://illum.dk/en/en-food/illum-rooftop-2/" target="_blank" rel="noopener">Illum</a> · <a href="https://www.lego.com/en-dk/stores/store/copenhagen" target="_blank" rel="noopener">LEGO</a></p>
   </section>
 
   <section class="hay-band">
@@ -386,6 +454,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
   </footer>
 </div>
 
+<script>window.CPH_FAV=["hooked", "hay-house", "andersen-maillard", "lille-petra", "designmuseum", "kastellet", "gasoline-grill", "nyhavn", "warpigs", "mother", "coffee-collective", "braet", "assistens", "perfectly-worn-vintage", "route-66", "brand-space-studio", "cleo", "naked", "rezet", "hart-bageri", "bird-downtown", "lille-bakery", "noma-projects", "ferm-living", "barr", "illum", "loja-lego", "design-market"];</script>
 <script>
 (function(){
   var body=document.body;
@@ -425,6 +494,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
     <div class="sheet-dots" id="sheet-dots"></div>
     <div class="sheet-body">
       <p class="sheet-kicker" id="sheet-zone"></p>
+      <p class="sheet-fav" id="sheet-fav" hidden><span class="fav" aria-hidden="true">★</span>Favorito da família</p>
       <h2 id="sheet-title"></h2>
       <p class="sheet-addr" id="sheet-addr"></p>
       <p class="sheet-credit" id="sheet-credit"></p>
@@ -474,6 +544,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
     currentId = id;
     lastFocus = document.activeElement;
     title.textContent = p.name;
+    var sf=document.getElementById("sheet-fav"); if(sf) sf.hidden = (window.CPH_FAV||[]).indexOf(id)<0;
     zone.textContent = p.zone || "";
     if(p.address){ addr.hidden=false; addr.textContent=p.address; }
     else { addr.hidden=true; addr.textContent=""; }
@@ -581,6 +652,8 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
   if(!coarse){ hint.textContent='Arrasta para mexer · Ctrl + roda para zoom'; }
   setTimeout(function(){ hint.classList.add('is-off'); }, 4500);
 
+  var FAVS = window.CPH_FAV||[];
+  var favG = L.featureGroup(), favBounds = L.latLngBounds([]);
   var groups = {}, allBounds = L.latLngBounds([]);
   var home = DATA.coords['venders'];
   DATA.days.forEach(function(d){
@@ -592,14 +665,21 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
       var id=st[0], n=st[1], c=DATA.coords[id];
       if(!c || id==='venders') return;
       var nm=(NAMES[id]||id);
+      var isFav=FAVS.indexOf(id)>-1;
       var m=L.marker(c,{
-        icon:L.divIcon({className:'',html:'<div class="mk d-'+day+'">'+n+'</div>',iconSize:[28,28],iconAnchor:[14,14]}),
-        title:DNAME[day]+' '+n+' · '+nm, alt:nm, riseOnHover:true, keyboard:true
+        icon:L.divIcon({className:'',html:'<div class="mk d-'+day+'">'+n+(isFav?'<b class="mk-star" aria-hidden="true">★</b>':'')+'</div>',iconSize:[28,28],iconAnchor:[14,14]}),
+        title:DNAME[day]+' '+n+' · '+nm+(isFav?' ★':''), alt:nm, riseOnHover:true, keyboard:true
       });
-      m.bindTooltip(DNAME[day]+' '+n+' · '+nm,{direction:'top',offset:[0,-14],className:'mk-tip'});
+      m.bindTooltip(DNAME[day]+' '+n+' · '+nm+(isFav?' ★':''),{direction:'top',offset:[0,-14],className:'mk-tip'});
       m.on('click',function(){ if(window.cphOpenPlace) window.cphOpenPlace(id); });
       m.addTo(g);
       allBounds.extend(c);
+      if(isFav){
+        var fm=L.marker(c,{icon:m.options.icon,title:m.options.title,alt:nm,riseOnHover:true,keyboard:true});
+        fm.bindTooltip(DNAME[day]+' '+n+' · '+nm+' ★',{direction:'top',offset:[0,-14],className:'mk-tip'});
+        fm.on('click',function(){ if(window.cphOpenPlace) window.cphOpenPlace(id); });
+        fm.addTo(favG); favBounds.extend(c);
+      }
     });
     groups[day]=g;
   });
@@ -619,7 +699,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
   var currentDay='all', ready=false;
   function pad(){ return window.innerWidth<700 ? [34,34] : [56,56]; }
   function fit(day){
-    var b = day==='all' ? allBounds : groups[day].getBounds().extend(home);
+    var b = day==='all' ? allBounds : day==='fav' ? L.latLngBounds(favBounds.getSouthWest(),favBounds.getNorthEast()).extend(home) : groups[day].getBounds().extend(home);
     map.fitBounds(b,{padding:pad(),maxZoom:16,animate:!!ready});
   }
   function show(day){
@@ -628,6 +708,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
     Object.keys(groups).forEach(function(k){
       if(day==='all'||day===k) groups[k].addTo(map); else map.removeLayer(groups[k]);
     });
+    if(day==='fav') favG.addTo(map); else map.removeLayer(favG);
     document.querySelectorAll('[data-map-day]').forEach(function(c){
       var on=c.getAttribute('data-map-day')===day; c.classList.toggle('is-active',on); c.setAttribute('aria-pressed',on?'true':'false');
     });
@@ -638,7 +719,7 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-
     c.addEventListener('click',function(){
       var day=c.getAttribute('data-map-day');
       var pill=document.querySelector('.pill[data-day="'+day+'"]');
-      if(pill) pill.click(); else show(day);
+      if(pill) pill.click(); else { var pa=document.querySelector('.pill[data-day="all"]'); if(pa && document.body.getAttribute('data-filter')!=='all') pa.click(); show(day); }
     });
   });
   map.fitBounds(allBounds,{padding:pad(),animate:false});
